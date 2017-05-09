@@ -1,4 +1,5 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types'; 
 import loremIpsum from 'lorem-ipsum';
 
 /* eslint-disable react/no-danger */
@@ -13,22 +14,6 @@ function makeLorem({ count, units, paragraphClassName }) {
 }
 
 export default class LoremIpsum extends PureComponent {
-  static propTypes = {
-    className: PropTypes.string,
-    paragraphClassName: PropTypes.string,
-    component: PropTypes.oneOfType([
-      PropTypes.func,
-      PropTypes.string,
-    ]).isRequired,
-    count: PropTypes.number.isRequired,
-    units: PropTypes.oneOf(['sentences', 'words', 'paragraphs']),
-  };
-
-  static defaultProps = {
-    component: 'section',
-    count: 1,
-    units: 'paragraphs',
-  };
 
   constructor(props) {
     super(props);
@@ -52,3 +37,20 @@ export default class LoremIpsum extends PureComponent {
     return <Component {...props} dangerouslySetInnerHTML={{ __html: lorem }} />;
   }
 }
+
+LoremIpsum.defaultProps = {
+  component: 'section',
+  count: 1,
+  units: 'paragraphs',
+};
+
+LoremIpsum.propTypes = {
+  className: PropTypes.string,
+  paragraphClassName: PropTypes.string,
+  component: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.string,
+  ]).isRequired,
+  count: PropTypes.number.isRequired,
+  units: PropTypes.oneOf(['sentences', 'words', 'paragraphs']),
+};
