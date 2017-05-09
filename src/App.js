@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 // import Dialog from 'react-md/lib/Dialogs';
 // import Button from 'react-md/lib/Buttons/Button';
 import NavigationDrawer from 'react-md/lib/NavigationDrawers';
@@ -7,18 +8,12 @@ import FontIcon from 'react-md/lib/FontIcons';
 import Avatar from 'react-md/lib/Avatars';
 import ListItem from 'react-md/lib/Lists/ListItem';
 import MenuButton from 'react-md/lib/Menus/MenuButton';
+import Paper from 'react-md/lib/Papers';
 
 import randomImage from './randomImage';
 // import LoremIpsum from './lorem';
 
 // import RouterClass from './router';
-import {
-  BrowserRouter as Router,
-  Route
-} from 'react-router-dom'
-
-import Home from './Home';
-import Settings from './Settings';
 
 const inboxListItems = [{
   key: 'inbox',
@@ -70,10 +65,9 @@ const drawerHeaderChildren = [
   />,
 ];
 
-export default class SimpleExample extends PureComponent {
+export default class App extends PureComponent {
   constructor(props) {
     super(props);
-
     this.state = { visible: false, dialog: null, key: inboxListItems[0].key };
     this._setPage = this._setPage.bind(this);
     this._navItems = inboxListItems.map(item => {
@@ -109,10 +103,15 @@ export default class SimpleExample extends PureComponent {
     });
 
     this.setState({ key });
+    this.context.router.history.push(`/${key}`)
   }
 
   render() {
     const { dialog } = this.state;
+    const navItems = this._navItems.map((_navItem) => {
+      _navItem.onClick = () => this._setPage(_navItem.key);
+      return _navItem;
+    });
 
     const moreButton = (
       <MenuButton
@@ -128,28 +127,33 @@ export default class SimpleExample extends PureComponent {
     );
 
     return (
-      <Router>
-        <div>
-          <NavigationDrawer
-            navItems={this._navItems}
-            renderNode={dialog}
-            contentClassName="md-grid"
-            drawerHeaderChildren={drawerHeaderChildren}
-            mobileDrawerType={NavigationDrawer.DrawerTypes.TEMPORARY_MINI}
-            tabletDrawerType={NavigationDrawer.DrawerTypes.PERSISTENT_MINI}
-            desktopDrawerType={NavigationDrawer.DrawerTypes.PERSISTENT_MINI}
-            toolbarTitle="Material Design"
-            toolbarActions={moreButton}
-            toolbarProminentTitle
-            contentId="main-content-demo"
-          >
-            <div>
-              <Route path='/home' component={Home} />
-              <Route path='/settings' component={Settings} />
-            </div>
-          </NavigationDrawer>
-        </div>
-      </Router>
+      <div>
+        <NavigationDrawer
+          navItems={navItems}
+          renderNode={dialog}
+          contentClassName="md-grid"
+          drawerHeaderChildren={drawerHeaderChildren}
+          mobileDrawerType={NavigationDrawer.DrawerTypes.TEMPORARY_MINI}
+          tabletDrawerType={NavigationDrawer.DrawerTypes.PERSISTENT_MINI}
+          desktopDrawerType={NavigationDrawer.DrawerTypes.PERSISTENT_MINI}
+          toolbarTitle="Material Design"
+          toolbarActions={moreButton}
+          toolbarProminentTitle
+          contentId="main-content-demo"
+        >
+        <Paper
+          zDepth={1}
+          raiseOnHover={false}
+          className='md-card md-cell md-cell--12'
+          style={{ margin: '0px', width: '100%' }}>
+          {this.props.children}
+        </Paper>
+        </NavigationDrawer>
+      </div>
     );
   }
+}
+
+App.contextTypes = {
+  router: PropTypes.object.isRequired
 }

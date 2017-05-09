@@ -1,9 +1,9 @@
 import React, { PureComponent } from 'react';
 
-export default class Home extends PureComponent {
+export default class Starred extends PureComponent {
   render() {
     return (
-      <h1>Home</h1>
+      <h1>Starred</h1>
     );
   }
 }
