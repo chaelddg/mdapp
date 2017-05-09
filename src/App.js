@@ -9,7 +9,17 @@ import ListItem from 'react-md/lib/Lists/ListItem';
 import MenuButton from 'react-md/lib/Menus/MenuButton';
 
 import randomImage from './randomImage';
-import LoremIpsum from './lorem';
+// import LoremIpsum from './lorem';
+
+// import RouterClass from './router';
+import {
+  BrowserRouter as Router,
+  Route
+} from 'react-router-dom'
+
+import Home from './Home';
+import Settings from './Settings';
+
 const inboxListItems = [{
   key: 'inbox',
   primaryText: 'Inbox',
@@ -102,7 +112,7 @@ export default class SimpleExample extends PureComponent {
   }
 
   render() {
-    const { dialog, key } = this.state;
+    const { dialog } = this.state;
 
     const moreButton = (
       <MenuButton
@@ -118,23 +128,28 @@ export default class SimpleExample extends PureComponent {
     );
 
     return (
-      <div>
-        <NavigationDrawer
-          navItems={this._navItems}
-          renderNode={dialog}
-          contentClassName="md-grid"
-          drawerHeaderChildren={drawerHeaderChildren}
-          mobileDrawerType={NavigationDrawer.DrawerTypes.TEMPORARY_MINI}
-          tabletDrawerType={NavigationDrawer.DrawerTypes.PERSISTENT_MINI}
-          desktopDrawerType={NavigationDrawer.DrawerTypes.PERSISTENT_MINI}
-          toolbarTitle="Material Design"
-          toolbarActions={moreButton}
-          toolbarProminentTitle
-          contentId="main-content-demo"
-        >
-          <LoremIpsum key={key} className="md-text-container md-cell md-cell--12" count={20} />
-        </NavigationDrawer>
-      </div>
+      <Router>
+        <div>
+          <NavigationDrawer
+            navItems={this._navItems}
+            renderNode={dialog}
+            contentClassName="md-grid"
+            drawerHeaderChildren={drawerHeaderChildren}
+            mobileDrawerType={NavigationDrawer.DrawerTypes.TEMPORARY_MINI}
+            tabletDrawerType={NavigationDrawer.DrawerTypes.PERSISTENT_MINI}
+            desktopDrawerType={NavigationDrawer.DrawerTypes.PERSISTENT_MINI}
+            toolbarTitle="Material Design"
+            toolbarActions={moreButton}
+            toolbarProminentTitle
+            contentId="main-content-demo"
+          >
+            <div>
+              <Route path='/home' component={Home} />
+              <Route path='/settings' component={Settings} />
+            </div>
+          </NavigationDrawer>
+        </div>
+      </Router>
     );
   }
 }

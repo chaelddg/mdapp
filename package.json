@@ -10,7 +10,8 @@
     "prop-types": "15.5.8",
     "react": "15.5.4",
     "react-dom": "15.5.4",
-    "react-md": "1.0.13"
+    "react-md": "1.0.13",
+    "react-router-dom": "4.1.1"
   },
   "devDependencies": {
     "react-scripts": "0.9.5"
