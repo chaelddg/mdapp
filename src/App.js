@@ -1,10 +1,12 @@
 import React, { PureComponent } from 'react';
 // import Dialog from 'react-md/lib/Dialogs';
-import Button from 'react-md/lib/Buttons/Button';
+// import Button from 'react-md/lib/Buttons/Button';
 import NavigationDrawer from 'react-md/lib/NavigationDrawers';
 import SelectField from 'react-md/lib/SelectFields';
 import FontIcon from 'react-md/lib/FontIcons';
 import Avatar from 'react-md/lib/Avatars';
+import ListItem from 'react-md/lib/Lists/ListItem';
+import MenuButton from 'react-md/lib/Menus/MenuButton';
 
 import randomImage from './randomImage';
 import LoremIpsum from './lorem';
@@ -103,15 +105,16 @@ export default class SimpleExample extends PureComponent {
     const { dialog, key } = this.state;
 
     const moreButton = (
-      <Button
+      <MenuButton
+        id="vert-menu"
         icon
-        onClick={this._closeDemo}
-        tooltipLabel="More buttons"
-        tooltipDelay={150}
-        tooltipPosition="left"
+        buttonChildren="more_vert"
+        className="menu-example"
+        tooltipLabel="Open some menu"
       >
-        more_vert
-      </Button>
+        <ListItem primaryText="Settings" rightIcon={<FontIcon>settings</FontIcon>} />
+        <ListItem primaryText="Logout" rightIcon={<FontIcon>power_settings_new</FontIcon>} />
+      </MenuButton>
     );
 
     return (
@@ -124,7 +127,7 @@ export default class SimpleExample extends PureComponent {
           mobileDrawerType={NavigationDrawer.DrawerTypes.TEMPORARY_MINI}
           tabletDrawerType={NavigationDrawer.DrawerTypes.PERSISTENT_MINI}
           desktopDrawerType={NavigationDrawer.DrawerTypes.PERSISTENT_MINI}
-          toolbarTitle="Hello, World!"
+          toolbarTitle="Material Design"
           toolbarActions={moreButton}
           toolbarProminentTitle
           contentId="main-content-demo"
