@@ -1,9 +1,6 @@
 import React from 'react';
 import DatePicker from 'react-md/lib/Pickers/DatePickerContainer';
 
-// or
-// import { DatePicker } from 'react-md/lib/Pickers';
-
 const InboxItem = () => (
   <div className="md-grid" style={{ padding: 0 }}>
     <DatePicker
