@@ -15,7 +15,6 @@ import Login from './app/containers/Login';
 import Inbox from './app/containers/Inbox';
 import StarredIndex from './app/containers/Starred';
 
-import StarredItem from './app/components/StarredItem';
 import InboxItem from './app/components/InboxItem';
 import InboxInputs from './app/components/InboxInputs';
 
@@ -28,7 +27,7 @@ ReactDOM.render(
       <div>
         <App>
           <Switch>
-            <Route exact path="/login" component={InboxInputs} />
+            <Route exact path="/login" component={Login} />
             <IndexApp>
               <Switch>
                 <Route exact path="/starred" component={StarredIndex} />

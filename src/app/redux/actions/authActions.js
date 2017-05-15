@@ -9,7 +9,7 @@ export function authenticateLogin(credentials) {
 		dispatch(beginAjaxCall());
 		return axios.post(`/auth/login`, credentials)
 			.then(authResponse => {
-				// console.log('@@ authResponse', authResponse);
+				dispatch({type: types.AUTHENTICATE_LOGIN_SUCCESS});
 			})
 			.catch(authError => {
 				dispatch(ajaxCallError());

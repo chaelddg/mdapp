@@ -117,7 +117,9 @@ export default class Index extends PureComponent {
 				tooltipLabel="Open some menu"
 			>
 				<ListItem primaryText="Settings" rightIcon={<FontIcon>settings</FontIcon>} />
-				<ListItem primaryText="Logout" rightIcon={<FontIcon>power_settings_new</FontIcon>} />
+				<ListItem primaryText="Logout" onClick={() => {
+					this.context.router.history.push('/login');
+				}} rightIcon={<FontIcon>power_settings_new</FontIcon>} />
 			</MenuButton>
 		);
 

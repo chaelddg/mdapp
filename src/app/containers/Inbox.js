@@ -16,7 +16,6 @@ class Inbox extends PureComponent {
   }
 
   render() {
-    console.log('@@ inbox');
     return (
       <div>
         {this.props.children}
@@ -30,6 +29,7 @@ Inbox.propTypes = {
 };
 
 function mapStateToProps(state, ownProps) {
+	console.log('@@ map state inbox', state);
   return {
 		user: state.user
   };

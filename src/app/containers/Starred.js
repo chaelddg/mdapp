@@ -17,7 +17,6 @@ class Starred extends PureComponent {
 	}
 
   render() {
-    console.log('@@ starred');
     return (
       <StarredItem />
     );
