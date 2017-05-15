@@ -9,9 +9,15 @@ import store from './app/redux/store/store';
 import './base.css';
 
 import App from './app/App';
+import IndexApp from './app/containers/Index';
+
+import Login from './app/containers/Login';
 import Inbox from './app/containers/Inbox';
-import Starred from './app/containers/Starred';
+import StarredIndex from './app/containers/Starred';
+
+import StarredItem from './app/components/StarredItem';
 import InboxItem from './app/components/InboxItem';
+import InboxInputs from './app/components/InboxInputs';
 
 const appStore = store();
 const history = createBrowserHistory();
@@ -19,18 +25,23 @@ const history = createBrowserHistory();
 ReactDOM.render(
   <Provider store={appStore}>
     <Router history={history}>
-      <App>
-        <Switch>
-          <Route exact path="/" component={Starred} />
-          <Route path="/starred" component={Starred} />
-          <Inbox>
-            <Route path="/inbox" component={Inbox}>
-              <Route path=":id" component={InboxItem} />
-            </Route>
-          </Inbox>
-        </Switch>
-      </App>
+      <div>
+        <App>
+          <Switch>
+            <Route exact path="/login" component={InboxInputs} />
+            <IndexApp>
+              <Switch>
+                <Route exact path="/starred" component={StarredIndex} />
+                <Inbox>
+                  <Route path="/inbox/:id" component={InboxItem} />
+                  <Route path="/contents/:id" component={InboxInputs} />
+                </Inbox>
+              </Switch>
+            </IndexApp>
+          </Switch>
+        </App>
+      </div>
     </Router>
   </Provider>,
-  document.getElementById('root')
+	document.getElementById('root')
 );

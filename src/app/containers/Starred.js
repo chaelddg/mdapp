@@ -4,6 +4,8 @@ import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import * as authActions from '../redux/actions/authActions';
 
+import StarredItem from '../components/StarredItem';
+
 class Starred extends PureComponent {
 	componentWillMount() {
 		const credentials = {
@@ -17,7 +19,7 @@ class Starred extends PureComponent {
   render() {
     console.log('@@ starred');
     return (
-      <h1>Starred</h1>
+      <StarredItem />
     );
   }
 }
