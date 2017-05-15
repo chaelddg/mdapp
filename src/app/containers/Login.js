@@ -8,6 +8,7 @@ import Button from 'react-md/lib/Buttons/Button';
 import TextField from 'react-md/lib/TextFields';
 
 import * as authActions from '../redux/actions/authActions';
+import validateInput from '../validations/authentication';
 
 class Login extends PureComponent {
 
@@ -17,7 +18,8 @@ class Login extends PureComponent {
 			credentials: {
 				email: "",
 				password: ""
-			}
+			},
+			errors: {}
 		};
 
 		this.handleChangeFieldValue = this.handleChangeFieldValue.bind(this);
@@ -31,12 +33,20 @@ class Login extends PureComponent {
 		this.setState({ credentials: temp });
 	}
 
+	isValid() {
+		const { isValid, errors } = validateInput(this.state.credentials);
+		this.setState({ errors });
+		return isValid
+	}
+
 	handleLogin() {
-		console.log('@@ handleLogin state', this.state.credentials);
+		if (this.isValid()) {
+			console.log('@@ handleLogin state', this.state.credentials);
+		}
 	}
 
 	render() {
-		const { credentials } = this.state;
+		const { credentials, errors } = this.state;
 
 		return (
 			<div>
@@ -50,6 +60,8 @@ class Login extends PureComponent {
 								label='Email'
 								value={credentials.email}
 								autoComplete={true}
+								error={errors.email ? true : false}
+								errorText={errors.email}
 								onChange={this.handleChangeFieldValue}
 								className='md-cell md-cell--12 md-cell--bottom'
 							/>
@@ -59,6 +71,8 @@ class Login extends PureComponent {
 								id='password'
 								label='Password'
 								value={credentials.password}
+								error={errors.password ? true : false}
+								errorText={errors.password}
 								onChange={this.handleChangeFieldValue}
 								type='password'
 								className='md-cell md-cell--12 md-cell--bottom'
