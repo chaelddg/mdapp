@@ -30,7 +30,7 @@ class Login extends PureComponent {
 	componentWillReceiveProps(nextProps) {
 		const { user } = nextProps;
 		if (user && user.id) {
-			this.context.router.history.push('/dashboard/one');
+			this.context.router.history.push('/dashboard/inbox');
 		}
 	}
 
@@ -55,11 +55,13 @@ class Login extends PureComponent {
 
 	render() {
 		const { credentials, errors } = this.state;
+		const { authMessage } = this.props;
 
 		return (
 			<div>
 				<Card className='md-cell md-cell--6'>
 					<CardText>
+						<h3>{authMessage}</h3>
 						<div className='screenLogin__formWrap'>
 							<TextField
 								leftIcon={<FontIcon>person</FontIcon>}
@@ -109,8 +111,8 @@ Login.propTypes = {
 };
 
 function mapStateToProps(state, ownProps) {
-	console.log('@@ ajax', state);
 	return {
+		authMessage: state.authMessage,
 		user: state.user
 	};
 }

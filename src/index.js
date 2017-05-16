@@ -8,7 +8,7 @@ import store from './app/redux/store/store';
 
 import './base.css';
 
-import IndexApp from './app/containers/Index';
+import IndexApp from './app/App';
 
 import Login from './app/containers/Login';
 

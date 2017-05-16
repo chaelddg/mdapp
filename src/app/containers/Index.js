@@ -16,80 +16,25 @@ import StarredIndex from './Starred';
 import InboxItem from '../components/InboxItem';
 import InboxInputs from '../components/InboxInputs';
 
+import localdb from '../../helpers/localdb';
+
 import * as authActions from '../redux/actions/authActions';
 
 import randomImage from '../../helpers/randomImage';
 
-const inboxListItems = [{
-	key: 'inbox',
-	primaryText: 'Inbox',
-	leftIcon: <FontIcon>inbox</FontIcon>,
-	active: true,
-}, {
-	key: 'starred',
-	primaryText: 'Starred',
-	leftIcon: <FontIcon>star</FontIcon>,
-}, {
-	key: 'send-mail',
-	primaryText: 'Send mail',
-	leftIcon: <FontIcon>send</FontIcon>,
-}, {
-	key: 'drafts',
-	primaryText: 'Drafts',
-	leftIcon: <FontIcon>drafts</FontIcon>,
-}, { key: 'divider', divider: true }, {
-	key: 'all-mail',
-	primaryText: 'All mail',
-	leftIcon: <FontIcon>mail</FontIcon>,
-}, {
-	key: 'trash',
-	primaryText: 'Trash',
-	leftIcon: <FontIcon>delete</FontIcon>,
-}, {
-	key: 'spam',
-	primaryText: 'Spam',
-	leftIcon: <FontIcon>info</FontIcon>,
-}];
 const avatarSrc = randomImage();
-
-const drawerHeaderChildren = [
-	<Avatar
-		key={avatarSrc}
-		src={avatarSrc}
-		role="presentation"
-		iconSized
-		style={{ alignSelf: 'center', marginLeft: 16, marginRight: 16, flexShrink: 0 }}
-	/>,
-	<SelectField
-		id="account-switcher"
-		defaultValue="Jonathan"
-		menuItems={['Jonathan', 'Fred']}
-		key="account-switcher"
-		position={SelectField.Positions.BELOW}
-		className="md-select-field--toolbar"
-	/>,
-];
 
 class Index extends PureComponent {
 	constructor(props) {
 		super(props);
-		this.state = { visible: false, dialog: null, key: inboxListItems[0].key };
+		this.state = { visible: false, dialog: null, key: 'inbox' };
 		this._setPage = this._setPage.bind(this);
-		this._navItems = inboxListItems.map(item => {
+		this._navItems = this.props.navItems.map(item => {
 			if (!item.divider) {
-				item.onClick = () => this._setPage(item.key);
+				item.onClick = () => this._setPage(item.key, item.href);
 			}
 			return item;
 		});
-	}
-
-	componentWillMount() {
-		console.log('@@ this.props', this.props);
-		const { user } = this.props;
-		if (!user.id) {
-			console.log('@@ here');
-			this.context.router.history.push('/login');
-		}
 
 	}
 
@@ -109,7 +54,7 @@ class Index extends PureComponent {
 		}
 	}
 
-	_setPage(key) {
+	_setPage(key, href) {
 		this._navItems = this._navItems.map(item => {
 			if (!item.divider) {
 				item.active = item.key === key;
@@ -118,15 +63,32 @@ class Index extends PureComponent {
 		});
 
 		this.setState({ key });
-		this.context.router.history.push(`/${key}`)
+		this.context.router.history.push(href)
 	}
 
 	render() {
+
 		const { dialog } = this.state;
-		const navItems = this._navItems.map((_navItem) => {
-			_navItem.onClick = () => this._setPage(_navItem.key);
-			return _navItem;
-		});
+		const { user, navItems } = this.props;
+		const _navItems = navItems;
+
+		let drawerHeaderChildren = [
+			<Avatar
+				key={avatarSrc}
+				src={avatarSrc}
+				role="presentation"
+				iconSized
+				style={{ alignSelf: 'center', marginLeft: 16, marginRight: 16, flexShrink: 0 }}
+			/>,
+			<SelectField
+				id="account-switcher"
+				defaultValue={user.first_name}
+				menuItems={[user.first_name]}
+				key="account-switcher"
+				position={SelectField.Positions.BELOW}
+				className="md-select-field--toolbar"
+			/>,
+		];
 
 		const moreButton = (
 			<MenuButton
@@ -138,6 +100,7 @@ class Index extends PureComponent {
 			>
 				<ListItem primaryText="Settings" rightIcon={<FontIcon>settings</FontIcon>} />
 				<ListItem primaryText="Logout" onClick={() => {
+					localdb.clear();
 					this.context.router.history.push('/login');
 				}} rightIcon={<FontIcon>power_settings_new</FontIcon>} />
 			</MenuButton>
@@ -146,7 +109,7 @@ class Index extends PureComponent {
 		return (
 			<div>
 				<NavigationDrawer
-					navItems={navItems}
+					navItems={_navItems}
 					renderNode={dialog}
 					contentClassName="md-grid"
 					drawerHeaderChildren={drawerHeaderChildren}
@@ -166,8 +129,8 @@ class Index extends PureComponent {
 
 						<div>
 							<Route exact path={this.props.match.path} component={StarredIndex} />
-							<Route path={`${this.props.match.path}/one`} component={InboxItem} />
-							<Route path={`${this.props.match.path}/two`} component={InboxInputs} />
+							<Route path={`${this.props.match.path}/inbox`} component={InboxItem} />
+							<Route path={`${this.props.match.path}/send-email`} component={InboxInputs} />
 						</div>
 
 					</Paper>
