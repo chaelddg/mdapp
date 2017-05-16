@@ -58,45 +58,47 @@ class Login extends PureComponent {
 		const { authMessage } = this.props;
 
 		return (
-			<div>
-				<Card className='md-cell md-cell--6'>
-					<CardText>
-						<h3>{authMessage}</h3>
-						<div className='screenLogin__formWrap'>
-							<TextField
-								leftIcon={<FontIcon>person</FontIcon>}
-								required
-								id='email'
-								label='Email'
-								value={credentials.email}
-								autoComplete={true}
-								error={errors.email ? true : false}
-								errorText={errors.email}
-								onChange={this.handleChangeFieldValue}
-								className='md-cell md-cell--12 md-cell--bottom'
-							/>
-							<TextField
-								leftIcon={<FontIcon>lock</FontIcon>}
-								required
-								id='password'
-								label='Password'
-								value={credentials.password}
-								error={errors.password ? true : false}
-								errorText={errors.password}
-								onChange={this.handleChangeFieldValue}
-								type='password'
-								className='md-cell md-cell--12 md-cell--bottom'
-							/>
+			<div className="md-grid">
+				<div className="md-cell md-cell--middle md-cell--6 md-cell--3-offset">
+					<Card>
+						<CardText>
+							<h3>{authMessage}</h3>
+							<div className='screenLogin__formWrap'>
+								<TextField
+									leftIcon={<FontIcon>person</FontIcon>}
+									required
+									id='email'
+									label='Email'
+									value={credentials.email}
+									autoComplete={true}
+									error={errors.email ? true : false}
+									errorText={errors.email}
+									onChange={this.handleChangeFieldValue}
+									className='md-cell md-cell--12 md-cell--bottom'
+								/>
+								<TextField
+									leftIcon={<FontIcon>lock</FontIcon>}
+									required
+									id='password'
+									label='Password'
+									value={credentials.password}
+									error={errors.password ? true : false}
+									errorText={errors.password}
+									onChange={this.handleChangeFieldValue}
+									type='password'
+									className='md-cell md-cell--12 md-cell--bottom'
+								/>
 
-							<div className='md-cell md-cell--12'>
-								<Button raised primary
-												label='Login'
-												onClick={this.handleLogin}
-												children={<FontIcon>lock_open</FontIcon>}/>
+								<div className='md-cell md-cell--12'>
+									<Button raised primary
+													label='Login'
+													onClick={this.handleLogin}
+													children={<FontIcon>lock_open</FontIcon>}/>
+								</div>
 							</div>
-						</div>
-					</CardText>
-				</Card>
+						</CardText>
+					</Card>
+				</div>
 			</div>
 		);
 	}
