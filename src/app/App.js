@@ -1,6 +1,9 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
-class App extends Component {
+class App extends PureComponent {
+
 	render() {
 		return (
 			<div>
@@ -10,4 +13,20 @@ class App extends Component {
 	}
 }
 
-export default App;
+App.propTypes = {
+	user: PropTypes.object.isRequired
+};
+
+function mapStateToProps(state, ownProps) {
+	return {
+		user: state.user
+	};
+}
+
+function mapDispatchToProps(dispatch) {
+	return {
+		actions: null
+	};
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

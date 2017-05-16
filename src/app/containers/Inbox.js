@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
@@ -6,15 +7,6 @@ import PropTypes from 'prop-types';
 import * as authActions from '../redux/actions/authActions';
 
 class Inbox extends PureComponent {
-  componentWillMount() {
-		const credentials = {
-			email: "d@gmail.com",
-			password: "ReCode123"
-		};
-
-    this.props.actions.authenticateLogin(credentials);
-  }
-
   render() {
     return (
       <div>
@@ -29,7 +21,6 @@ Inbox.propTypes = {
 };
 
 function mapStateToProps(state, ownProps) {
-	console.log('@@ map state inbox', state);
   return {
 		user: state.user
   };
@@ -41,4 +32,4 @@ function mapDispatchToProps(dispatch) {
 	};
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Inbox);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Inbox));

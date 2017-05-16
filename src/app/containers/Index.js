@@ -1,4 +1,8 @@
 import React, { PureComponent } from 'react';
+import { Route } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import NavigationDrawer from 'react-md/lib/NavigationDrawers';
 import SelectField from 'react-md/lib/SelectFields';
@@ -7,6 +11,12 @@ import Avatar from 'react-md/lib/Avatars';
 import ListItem from 'react-md/lib/Lists/ListItem';
 import MenuButton from 'react-md/lib/Menus/MenuButton';
 import Paper from 'react-md/lib/Papers';
+
+import StarredIndex from './Starred';
+import InboxItem from '../components/InboxItem';
+import InboxInputs from '../components/InboxInputs';
+
+import * as authActions from '../redux/actions/authActions';
 
 import randomImage from '../../helpers/randomImage';
 
@@ -60,7 +70,7 @@ const drawerHeaderChildren = [
 	/>,
 ];
 
-export default class Index extends PureComponent {
+class Index extends PureComponent {
 	constructor(props) {
 		super(props);
 		this.state = { visible: false, dialog: null, key: inboxListItems[0].key };
@@ -71,6 +81,16 @@ export default class Index extends PureComponent {
 			}
 			return item;
 		});
+	}
+
+	componentWillMount() {
+		console.log('@@ this.props', this.props);
+		const { user } = this.props;
+		if (!user.id) {
+			console.log('@@ here');
+			this.context.router.history.push('/login');
+		}
+
 	}
 
 	componentDidUpdate(prevProps, prevState) {
@@ -143,7 +163,13 @@ export default class Index extends PureComponent {
 						raiseOnHover={false}
 						className='md-card md-cell md-cell--12'
 						style={{ margin: '0px', width: '100%' }}>
-						{this.props.children}
+
+						<div>
+							<Route exact path={this.props.match.path} component={StarredIndex} />
+							<Route path={`${this.props.match.path}/one`} component={InboxItem} />
+							<Route path={`${this.props.match.path}/two`} component={InboxInputs} />
+						</div>
+
 					</Paper>
 				</NavigationDrawer>
 			</div>
@@ -154,3 +180,21 @@ export default class Index extends PureComponent {
 Index.contextTypes = {
 	router: PropTypes.object.isRequired
 };
+
+Index.propTypes = {
+	user: PropTypes.object.isRequired
+};
+
+function mapStateToProps(state, ownProps) {
+	return {
+		user: state.user
+	};
+}
+
+function mapDispatchToProps(dispatch) {
+	return {
+		actions: bindActionCreators(authActions, dispatch)
+	};
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Index));

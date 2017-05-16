@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
@@ -7,14 +8,6 @@ import * as authActions from '../redux/actions/authActions';
 import StarredItem from '../components/StarredItem';
 
 class Starred extends PureComponent {
-	componentWillMount() {
-		const credentials = {
-			email: "d@gmail.com",
-			password: "ReCode123"
-		};
-
-		this.props.actions.authenticateLogin(credentials);
-	}
 
   render() {
     return (
@@ -39,4 +32,4 @@ function mapDispatchToProps(dispatch) {
 	};
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Starred);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Starred));

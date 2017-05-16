@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
@@ -26,6 +27,13 @@ class Login extends PureComponent {
 		this.handleLogin = this.handleLogin.bind(this);
 	}
 
+	componentWillReceiveProps(nextProps) {
+		const { user } = nextProps;
+		if (user && user.id) {
+			this.context.router.history.push('/dashboard/one');
+		}
+	}
+
 	handleChangeFieldValue(e, ctx) {
 		const { credentials } = this.state;
 		let temp = Object.assign({}, credentials);
@@ -41,7 +49,7 @@ class Login extends PureComponent {
 
 	handleLogin() {
 		if (this.isValid()) {
-			console.log('@@ handleLogin state', this.state.credentials);
+			this.props.actions.authenticateLogin(this.state.credentials);
 		}
 	}
 
@@ -92,11 +100,16 @@ class Login extends PureComponent {
 	}
 }
 
+Login.contextTypes = {
+	router: PropTypes.object.isRequired
+};
+
 Login.propTypes = {
 	user: PropTypes.object.isRequired
 };
 
 function mapStateToProps(state, ownProps) {
+	console.log('@@ ajax', state);
 	return {
 		user: state.user
 	};
@@ -108,4 +121,4 @@ function mapDispatchToProps(dispatch) {
 	};
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login));
