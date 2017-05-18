@@ -16,6 +16,9 @@ class App extends PureComponent {
 		super(props);
 
 		this._setPage = this._setPage.bind(this);
+		this.state = {
+			_navItems: []
+		};
 	}
 
 	componentWillMount() {
@@ -36,42 +39,48 @@ class App extends PureComponent {
 	}
 
 	componentWillReceiveProps(nextProps) {
-		console.log('@@ nextprops appjs =>', nextProps);
+		const { _navItems } = this.state;
+
+		if (_navItems.length === 0 && (nextProps.user && nextProps.user.menu)) {
+			let navItems = [];
+			let pathname = this.props.location.pathname;
+			nextProps.user.menu.map((item, index) => {
+				let _temp = {};
+				if (!item.divider) {
+					_temp.active = pathname.search(item.key) !== -1 ? true : false;
+					_temp.key = item.key;
+					_temp.primaryText = item.primaryText;
+					_temp.leftIcon = <FontIcon>{item.icon}</FontIcon>;
+					_temp.onClick = () => this._setPage(item.key, item.path);
+				} else {
+					_temp.divider = true;
+					_temp.key = item.key;
+				}
+				return navItems.push(_temp);
+			});
+
+			this.setState({ _navItems: navItems })
+		}
 	}
 
 	_setPage(key, href) {
-		this._navItems = this._navItems.map(item => {
+		const { _navItems } = this.state;
+		let navItems = _navItems.map(item => {
 			if (!item.divider) {
 				item.active = item.key === key;
 			}
 			return item;
 		});
 
-		this.setState({ key });
-		this.context.router.history.push(href)
+		this.setState({ _navItems: navItems,  key });
+		this.context.router.history.push(href);
 	}
 
 	render() {
-		const { user } = this.props;
-		let navItems = [];
-		if (user.menu) {
-			user.menu.map((item, index) => {
-				console.log('@@ primaryText', item);
-				let _temp = {};
-				if (!item.divider) {
-					_temp.primaryText = item.primaryText;
-					_temp.href = item.path;
-					_temp.leftIcon = <FontIcon>{item.icon}</FontIcon>;
-					_temp.onClick = () => this._setPage(item.key, item.href);
-				} else {
-					_temp.divider = true;
-					_temp.key = item.key;
-				}
-				navItems.push(_temp);
-			});
-		}
+		const { _navItems } = this.state;
+
 		return (
-			<Index navItems={navItems} />
+			<Index navItems={_navItems} />
 		);
 	}
 }
