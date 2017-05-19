@@ -6,6 +6,7 @@ const PORT = 3030;
 
 app.use(express.static(path.join(process.cwd(), 'build')));
 app.get('/*', function (req, res) {
+	console.log(path.join(process.cwd(), 'build', 'index.html'));
 	res.sendFile(path.join(process.cwd(), 'build', 'index.html'));
 });
 
