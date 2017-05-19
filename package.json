@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "axios": "0.16.1",
+    "babel-register": "6.24.1",
     "express": "4.15.3",
     "lorem-ipsum": "1.0.4",
     "node-sass": "4.5.2",
