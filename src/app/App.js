@@ -26,7 +26,6 @@ class App extends PureComponent {
 
 		if (!user.id) {
 			let id = localdb.getItem('id');
-
 			if (id) {
 				this.props.actions.getUserDetails(id);
 			} else {
@@ -40,26 +39,31 @@ class App extends PureComponent {
 
 	componentWillReceiveProps(nextProps) {
 		const { _navItems } = this.state;
+		let pathname = this.props.location.pathname;
 
 		if (_navItems.length === 0 && (nextProps.user && nextProps.user.menu)) {
-			let navItems = [];
-			let pathname = this.props.location.pathname;
-			nextProps.user.menu.map((item, index) => {
-				let _temp = {};
-				if (!item.divider) {
-					_temp.active = pathname.search(item.key) !== -1 ? true : false;
-					_temp.key = item.key;
-					_temp.primaryText = item.primaryText;
-					_temp.leftIcon = <FontIcon>{item.icon}</FontIcon>;
-					_temp.onClick = () => this._setPage(item.key, item.path);
-				} else {
-					_temp.divider = true;
-					_temp.key = item.key;
-				}
-				return navItems.push(_temp);
-			});
-
-			this.setState({ _navItems: navItems })
+			// CHECKING IF USER IS NOT ALLOWED TO NAVIGATE ROUTE
+			let foundObjForKey = nextProps.user.menu.find((item) => item.path === pathname);
+			if (!foundObjForKey) {
+				this.context.router.history.push('/dashboard');
+			} else {
+				let navItems = [];
+				nextProps.user.menu.map((item, index) => {
+					let _temp = {};
+					if (!item.divider) {
+						_temp.active = (pathname === '/dashboard' && item.key === 'toys' ? item.active : (pathname.search(item.key) !== -1 ? true : false));
+						_temp.key = item.key;
+						_temp.primaryText = item.primaryText;
+						_temp.leftIcon = <FontIcon>{item.icon}</FontIcon>;
+						_temp.onClick = () => this._setPage(item.key, item.path);
+					} else {
+						_temp.divider = true;
+						_temp.key = item.key;
+					}
+					return navItems.push(_temp);
+				});
+				this.setState({ _navItems: navItems })
+			}
 		}
 	}
 

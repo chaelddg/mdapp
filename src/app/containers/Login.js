@@ -30,7 +30,7 @@ class Login extends PureComponent {
 	componentWillReceiveProps(nextProps) {
 		const { user } = nextProps;
 		if (user && user.id) {
-			this.context.router.history.push('/dashboard/inbox');
+			this.context.router.history.push('/dashboard');
 		}
 	}
 
