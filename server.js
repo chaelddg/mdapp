@@ -4,10 +4,10 @@ const path = require('path');
 const app = express();
 const PORT = 3030;
 
-app.use(express.static(path.join(process.cwd(), 'build')));
+app.use(express.static('build'));
 app.get('/*', function (req, res) {
-	console.log(path.join(process.cwd(), 'build', 'index.html'));
-	res.sendFile(path.join(process.cwd(), 'build', 'index.html'));
+	console.log(path.join(__dirname, '/build/index.html'));
+	res.sendFile(path.join(__dirname, '/build/index.html'));
 });
 
 app.listen(PORT, () => {
