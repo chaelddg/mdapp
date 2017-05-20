@@ -1,8 +1,10 @@
 import React from 'react';
+import DataTable from './DataTable';
 
 const InboxItem = () => (
-	<div className="md-grid" style={{ padding: 0 }}>
-		<h1>Starred ====</h1>
+	<div>
+		<h1>Dashboard ====</h1>
+		<DataTable/>
 	</div>
 );
 

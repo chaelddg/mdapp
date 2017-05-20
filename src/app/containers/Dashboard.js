@@ -5,13 +5,13 @@ import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import * as authActions from '../redux/actions/authActions';
 
-import StarredItem from '../components/StarredItem';
+import DashboardItem from '../components/DashboardItem';
 
 class Starred extends PureComponent {
 
   render() {
     return (
-      <StarredItem />
+      <DashboardItem />
     );
   }
 }

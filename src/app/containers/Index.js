@@ -12,7 +12,7 @@ import ListItem from 'react-md/lib/Lists/ListItem';
 import MenuButton from 'react-md/lib/Menus/MenuButton';
 import Paper from 'react-md/lib/Papers';
 
-import StarredIndex from './Starred';
+import StarredIndex from './Dashboard';
 import InboxItem from '../components/InboxItem';
 import InboxInputs from '../components/InboxInputs';
 
