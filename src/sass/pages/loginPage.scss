@@ -1,0 +1,13 @@
+.login_page{
+	display: flex;
+	align-items:center;
+	justify-content:center;
+
+	width: 100vw;
+	height: auto;
+	min-height: 100vh;
+
+	>.md-grid{
+		width: 100%;
+	}
+}
