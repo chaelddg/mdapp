@@ -4,6 +4,8 @@
   "private": true,
   "dependencies": {
     "axios": "0.16.1",
+    "babel-register": "6.24.1",
+    "express": "4.15.3",
     "lorem-ipsum": "1.0.4",
     "node-sass": "4.5.2",
     "normalize.css": "7.0.0",
@@ -17,7 +19,7 @@
     "redux": "3.6.0",
     "redux-immutable-state-invariant": "2.0.0",
     "redux-thunk": "2.2.0",
-    "validator": "^7.0.0"
+    "validator": "7.0.0"
   },
   "devDependencies": {
     "react-scripts": "0.9.5"
