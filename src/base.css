@@ -6,6 +6,7 @@
  * 2. Prevent adjustments of font size after orientation changes in
  *    IE on Windows Phone and in iOS.
  */
+@import url("https://fonts.googleapis.com/css?family=Leckerli+One");
 html {
   line-height: 1.15;
   /* 1 */
@@ -4285,8 +4286,247 @@ tbody .md-table-row {
   .md-background--secondary-hover:hover {
     background: rgba(245, 0, 87, 0.9); } }
 
+.md-display-4 {
+  letter-spacing: -.1px; }
+
+.md-display-3 {
+  letter-spacing: -.05px; }
+
+.md-display-2, h1, .md-display-1, h2, .md-headline {
+  letter-spacing: 0; }
+
+h3, .md-title {
+  letter-spacing: .5px; }
+
+h4, .md-subheading-2, h5, .md-subheading-1, p, .md-body-1, h6, .md-body-2 {
+  letter-spacing: .1px; }
+
+caption, .md-caption {
+  letter-spacing: .2px; }
+
+h1, .md-display-1,
+.md-display-2,
+.md-display-3,
+.md-display-4,
+h2,
+.md-headline,
+h3,
+.md-title,
+h5,
+.md-subheading-1,
+h4,
+.md-subheading-2,
+p,
+.md-body-1,
+h6,
+.md-body-2,
+caption,
+.md-caption {
+  margin: 0; }
+
+h1, .md-display-1,
+.md-display-2,
+.md-display-3,
+.md-display-4,
+h2,
+.md-headline,
+h3,
+.md-title {
+  margin-bottom: 14px; }
+
+h5, .md-subheading-1,
+h4,
+.md-subheading-2,
+p,
+.md-body-1,
+h6,
+.md-body-2,
+caption,
+.md-caption {
+  margin-bottom: 10px; }
+
+.md-display-3,
+.md-display-4,
+h3,
+.md-title {
+  white-space: nowrap; }
+
+h1, .md-display-1,
+.md-display-2,
+.md-display-3,
+h2,
+.md-headline,
+h5,
+.md-subheading-1,
+h4,
+.md-subheading-2,
+p,
+.md-body-1,
+caption,
+.md-caption {
+  font-weight: 400; }
+
+h3, .md-title,
+h6,
+.md-body-2 {
+  font-weight: 500; }
+
+.md-display-4 {
+  font-size: 112px;
+  font-weight: 300;
+  line-height: 128px; }
+
+.md-display-3 {
+  font-size: 56px;
+  line-height: 84px; }
+
+.md-display-2 {
+  font-size: 45px;
+  line-height: 48px; }
+
+h1, .md-display-1 {
+  font-size: 34px;
+  line-height: 40px; }
+
+h2, .md-headline {
+  font-size: 24px;
+  line-height: 32px; }
+
+h3, .md-title {
+  font-size: 20px;
+  line-height: 28px; }
+
+h4, .md-subheading-2 {
+  line-height: 28px; }
+
+h5, .md-subheading-1 {
+  line-height: 24px; }
+
+caption, .md-caption {
+  font-size: 12px; }
+
+.md-text-left, .md-picker-control {
+  text-align: left; }
+
+.md-text-center, .md-calendar-date {
+  text-align: center; }
+
+.md-text-right {
+  text-align: right; }
+
+.md-text-justify {
+  text-align: justify; }
+
+.md-text-capitalize {
+  text-transform: capitalize; }
+
+.md-text-lowercalse {
+  text-transform: lowercase; }
+
+.md-text-uppercase {
+  text-transform: uppercase; }
+
+.md-text-nowrap {
+  white-space: nowrap; }
+
+.md-text-no-select {
+  user-select: none; }
+
+.md-font-light {
+  font-weight: 300; }
+
+.md-font-regular {
+  font-weight: 400; }
+
+.md-font-medium, .md-btn .md-icon-text, .md-clock-time-value {
+  font-weight: 500; }
+
+.md-font-bold {
+  font-weight: 700; }
+
+.md-transition--sharp {
+  transition-timing-function: cubix-bezier(0.4, 0, 0.6, 1); }
+
+.md-transition--standard {
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); }
+
+.md-transition--acceleration, .md-drop-down-leave.md-drop-down-leave-active {
+  transition-timing-function: cubic-bezier(0.4, 0, 1, 1); }
+
+.md-transition--decceleration, .md-drop-down-enter.md-drop-down-enter-active {
+  transition-timing-function: cubic-bezier(0, 0, 0.2, 1); }
+
+.md-calendar-date, .md-inline-block {
+  display: inline-block;
+  vertical-align: bottom; }
+
+.md-full-width {
+  width: 100%; }
+
+.md-text-container, .md-bottom-nav .md-icon, .md-block-centered {
+  display: block;
+  margin-left: auto;
+  margin-right: auto; }
+
+.md-grid.md-grid--no-spacing > .md-cell.md-cell--right, .md-cell--right, .md-collapser--card, .md-divider--expand-from-right::after {
+  margin-left: auto; }
+
+.md-grid.md-grid--no-spacing > .md-cell.md-cell--right, .md-cell--right, .md-collapser--card, .md-divider--expand-from-right::after {
+  margin-left: auto; }
+
+.md-data-table--plain .md-table-column--data, .md-data-table .md-table-column--plain {
+  height: auto;
+  min-height: 48px;
+  padding-bottom: 16px;
+  padding-top: 16px;
+  vertical-align: top; }
+
+.md-expansion-panel-list, .md-list-unstyled, .md-list, .md-tabs {
+  list-style: none;
+  margin: 0;
+  padding-left: 0; }
+
+.md-media img, .md-media iframe, .md-media svg {
+  bottom: 0;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100%; }
+
 .md-grid--center {
   justify-content: center; }
+
+.cursive--font {
+  font-family: "Leckerli One", cursive; }
+
+.btn--gradient {
+  background: linear-gradient(to right, #1976d2 60%, #4dd0e1); }
+  .btn--gradient .md-icon,
+  .btn--gradient .md-icon-text {
+    color: #fff; }
+
+.btn--large {
+  width: 100%;
+  height: auto; }
+  .btn--large .md-icon,
+  .btn--large .md-icon-text {
+    font-size: 2rem; }
+
+.btn--capitalize .md-icon-text {
+  text-transform: capitalize; }
+
+.btn--center .md-icon-separator {
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+  .btn--center .md-icon-separator > .md-icon {
+    margin-right: .25em; }
+  .btn--center .md-icon-separator .md-icon-text {
+    padding: 0;
+    width: auto;
+    flex-grow: 0; }
 
 .md-display-4 {
   letter-spacing: -.1px; }
@@ -4501,13 +4741,13 @@ caption, .md-caption {
   background: rgba(25, 118, 210, 0.12); }
 
 .mdapp--theme .md-btn--color-secondary-active {
-  background: rgba(255, 110, 64, 0.12); }
+  background: rgba(77, 208, 225, 0.12); }
 
 .mdapp--theme .md-card-title--contextual {
-  background: #fff3e0; }
+  background: #e0f7fa; }
 
 .mdapp--theme .md-card-title--title-contextual {
-  color: #ff6e40; }
+  color: #4dd0e1; }
 
 .mdapp--theme .md-picker-header {
   background: #1976d2; }
@@ -4519,7 +4759,7 @@ caption, .md-caption {
   background: #1976d2; }
 
 .mdapp--theme .md-circular-progress-path {
-  stroke: #ff6e40; }
+  stroke: #4dd0e1; }
 
 .mdapp--theme .md-slider-thumb--on,
 .mdapp--theme .md-slider-track-fill {
@@ -4529,7 +4769,7 @@ caption, .md-caption {
   border-top-color: #1976d2; }
 
 .mdapp--theme .md-tab-indicator {
-  background: #ff6e40; }
+  background: #4dd0e1; }
 
 .mdapp--theme .md-divider--text-field:not(.md-divider--text-field-error)::after {
   background: #1976d2; }
@@ -4550,19 +4790,19 @@ caption, .md-caption {
   background: #1976d2; }
 
 .mdapp--theme .md-text--theme-secondary {
-  color: #ff6e40; }
+  color: #4dd0e1; }
 
 .mdapp--theme .md-ink--secondary .md-ink {
-  background: rgba(255, 110, 64, 0.26); }
+  background: rgba(77, 208, 225, 0.26); }
 
 .mdapp--theme .md-background--secondary {
-  background: #ff6e40; }
+  background: #4dd0e1; }
 
 @media screen and (min-width: 1025px) {
   .mdapp--theme .md-background--primary-hover:hover {
     background: rgba(25, 118, 210, 0.9); }
   .mdapp--theme .md-background--secondary-hover:hover {
-    background: rgba(255, 110, 64, 0.9); } }
+    background: rgba(77, 208, 225, 0.9); } }
 
 .login_page {
   display: flex;
@@ -4573,3 +4813,30 @@ caption, .md-caption {
   min-height: 100vh; }
   .login_page > .md-grid {
     width: 100%; }
+
+.login_page .login--logo {
+  width: 100%;
+  height: auto;
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background-position: center center;
+  background-size: cover;
+  background-color: #1976d2; }
+  .login_page .login--logo:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    background: linear-gradient(to top, rgba(77, 208, 225, 0.5) 20%, #1976d2); }
+  .login_page .login--logo > * {
+    position: relative;
+    z-index: 1; }
+  .login_page .login--logo span {
+    color: #fff;
+    font-size: 3rem; }

@@ -7,6 +7,7 @@ import { Card, CardText } from 'react-md/lib/Cards'
 import FontIcon from 'react-md/lib/FontIcons';
 import Button from 'react-md/lib/Buttons/Button';
 import TextField from 'react-md/lib/TextFields';
+import SelectionControl from 'react-md/lib/SelectionControls/SelectionControl';
 
 import * as authActions from '../redux/actions/authActions';
 import validateInput from '../validations/authentication';
@@ -61,7 +62,13 @@ class Login extends PureComponent {
 			<div className="login_page">
 				<div className="md-grid md-grid--center">
 					<div className="md-cell md-cell--middle md-cell--3">
-						<Card>
+						<Card >
+							<div className="login--logo">
+								<span className="md-font-bold">
+									MD
+									<span className="cursive--font">app</span>
+								</span>
+							</div>
 							<CardText>
 								<h3>{authMessage}</h3>
 								<div className='screenLogin__formWrap'>
@@ -75,7 +82,7 @@ class Login extends PureComponent {
 										error={errors.email ? true : false}
 										errorText={errors.email}
 										onChange={this.handleChangeFieldValue}
-										className='md-cell md-cell--12 md-cell--bottom'
+										className=''
 									/>
 									<TextField
 										leftIcon={<FontIcon>lock</FontIcon>}
@@ -87,15 +94,21 @@ class Login extends PureComponent {
 										errorText={errors.password}
 										onChange={this.handleChangeFieldValue}
 										type='password'
-										className='md-cell md-cell--12 md-cell--bottom'
+										className=''
+									/>
+									<SelectionControl
+										id="remember"
+										name="rememberMeCbox[]"
+										label="Remember me"
+										type="checkbox"
+										value="mdSpec"
 									/>
 
-									<div className='md-cell md-cell--12'>
-										<Button raised primary
-														label='Login'
-														onClick={this.handleLogin}
-														children={<FontIcon>lock_open</FontIcon>}/>
-									</div>
+									<Button raised
+										label='Login'
+										onClick={this.handleLogin}
+										children={<FontIcon>lock_open</FontIcon>}
+										className="btn--gradient btn--large btn--center btn--capitalize"/>
 								</div>
 							</CardText>
 						</Card>

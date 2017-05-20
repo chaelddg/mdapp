@@ -1,0 +1,39 @@
+
+
+.btn--gradient{
+	background: linear-gradient(to right, $color-primary 60%, $color-secondary);
+	.md-icon,
+	.md-icon-text{
+		color: $color-white;
+	}	
+}
+
+.btn--large{
+	width: 100%;
+	height: auto;
+	.md-icon,
+	.md-icon-text{
+		font-size: 2rem;
+	}
+}
+
+.btn--capitalize{
+	.md-icon-text{
+		text-transform: capitalize;
+	}
+}
+.btn--center{
+	.md-icon-separator{
+		display: flex;
+		align-items:center;
+		justify-content:center;
+		> .md-icon{
+			margin-right: .25em;
+		}
+		.md-icon-text{
+			padding:0;
+			width: auto;
+			flex-grow:0;
+		}
+	}
+}

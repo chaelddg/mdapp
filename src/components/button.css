@@ -1,0 +1,20 @@
+.btn--large {
+  width: 100%;
+  height: auto; }
+  .btn--large .md-icon,
+  .btn--large .md-icon-text {
+    font-size: 2rem; }
+
+.btn--capitalize .md-icon-text {
+  text-transform: capitalize; }
+
+.btn--center .md-icon-separator {
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+  .btn--center .md-icon-separator > .md-icon {
+    margin-right: .25em; }
+  .btn--center .md-icon-separator .md-icon-text {
+    padding: 0;
+    width: auto;
+    flex-grow: 0; }
