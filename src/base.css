@@ -4288,6 +4288,215 @@ tbody .md-table-row {
 .md-grid--center {
   justify-content: center; }
 
+.md-display-4 {
+  letter-spacing: -.1px; }
+
+.md-display-3 {
+  letter-spacing: -.05px; }
+
+.md-display-2, h1, .md-display-1, h2, .md-headline {
+  letter-spacing: 0; }
+
+h3, .md-title {
+  letter-spacing: .5px; }
+
+h4, .md-subheading-2, h5, .md-subheading-1, p, .md-body-1, h6, .md-body-2 {
+  letter-spacing: .1px; }
+
+caption, .md-caption {
+  letter-spacing: .2px; }
+
+h1, .md-display-1,
+.md-display-2,
+.md-display-3,
+.md-display-4,
+h2,
+.md-headline,
+h3,
+.md-title,
+h5,
+.md-subheading-1,
+h4,
+.md-subheading-2,
+p,
+.md-body-1,
+h6,
+.md-body-2,
+caption,
+.md-caption {
+  margin: 0; }
+
+h1, .md-display-1,
+.md-display-2,
+.md-display-3,
+.md-display-4,
+h2,
+.md-headline,
+h3,
+.md-title {
+  margin-bottom: 14px; }
+
+h5, .md-subheading-1,
+h4,
+.md-subheading-2,
+p,
+.md-body-1,
+h6,
+.md-body-2,
+caption,
+.md-caption {
+  margin-bottom: 10px; }
+
+.md-display-3,
+.md-display-4,
+h3,
+.md-title {
+  white-space: nowrap; }
+
+h1, .md-display-1,
+.md-display-2,
+.md-display-3,
+h2,
+.md-headline,
+h5,
+.md-subheading-1,
+h4,
+.md-subheading-2,
+p,
+.md-body-1,
+caption,
+.md-caption {
+  font-weight: 400; }
+
+h3, .md-title,
+h6,
+.md-body-2 {
+  font-weight: 500; }
+
+.md-display-4 {
+  font-size: 112px;
+  font-weight: 300;
+  line-height: 128px; }
+
+.md-display-3 {
+  font-size: 56px;
+  line-height: 84px; }
+
+.md-display-2 {
+  font-size: 45px;
+  line-height: 48px; }
+
+h1, .md-display-1 {
+  font-size: 34px;
+  line-height: 40px; }
+
+h2, .md-headline {
+  font-size: 24px;
+  line-height: 32px; }
+
+h3, .md-title {
+  font-size: 20px;
+  line-height: 28px; }
+
+h4, .md-subheading-2 {
+  line-height: 28px; }
+
+h5, .md-subheading-1 {
+  line-height: 24px; }
+
+caption, .md-caption {
+  font-size: 12px; }
+
+.md-text-left, .md-picker-control {
+  text-align: left; }
+
+.md-text-center, .md-calendar-date {
+  text-align: center; }
+
+.md-text-right {
+  text-align: right; }
+
+.md-text-justify {
+  text-align: justify; }
+
+.md-text-capitalize {
+  text-transform: capitalize; }
+
+.md-text-lowercalse {
+  text-transform: lowercase; }
+
+.md-text-uppercase {
+  text-transform: uppercase; }
+
+.md-text-nowrap {
+  white-space: nowrap; }
+
+.md-text-no-select {
+  user-select: none; }
+
+.md-font-light {
+  font-weight: 300; }
+
+.md-font-regular {
+  font-weight: 400; }
+
+.md-font-medium, .md-btn .md-icon-text, .md-clock-time-value {
+  font-weight: 500; }
+
+.md-font-bold {
+  font-weight: 700; }
+
+.md-transition--sharp {
+  transition-timing-function: cubix-bezier(0.4, 0, 0.6, 1); }
+
+.md-transition--standard {
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); }
+
+.md-transition--acceleration, .md-drop-down-leave.md-drop-down-leave-active {
+  transition-timing-function: cubic-bezier(0.4, 0, 1, 1); }
+
+.md-transition--decceleration, .md-drop-down-enter.md-drop-down-enter-active {
+  transition-timing-function: cubic-bezier(0, 0, 0.2, 1); }
+
+.md-calendar-date, .md-inline-block {
+  display: inline-block;
+  vertical-align: bottom; }
+
+.md-full-width {
+  width: 100%; }
+
+.md-text-container, .md-bottom-nav .md-icon, .md-block-centered {
+  display: block;
+  margin-left: auto;
+  margin-right: auto; }
+
+.md-grid.md-grid--no-spacing > .md-cell.md-cell--right, .md-cell--right, .md-collapser--card, .md-divider--expand-from-right::after {
+  margin-left: auto; }
+
+.md-grid.md-grid--no-spacing > .md-cell.md-cell--right, .md-cell--right, .md-collapser--card, .md-divider--expand-from-right::after {
+  margin-left: auto; }
+
+.md-data-table--plain .md-table-column--data, .md-data-table .md-table-column--plain {
+  height: auto;
+  min-height: 48px;
+  padding-bottom: 16px;
+  padding-top: 16px;
+  vertical-align: top; }
+
+.md-expansion-panel-list, .md-list-unstyled, .md-list, .md-tabs {
+  list-style: none;
+  margin: 0;
+  padding-left: 0; }
+
+.md-media img, .md-media iframe, .md-media svg {
+  bottom: 0;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100%; }
+
 .mdapp--theme .md-btn--color-primary-active {
   background: rgba(25, 118, 210, 0.12); }
 

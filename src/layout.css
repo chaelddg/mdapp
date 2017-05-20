@@ -1,0 +1,66 @@
+.mdapp--theme .md-btn--color-primary-active {
+  background: rgba(25, 118, 210, 0.12); }
+
+.mdapp--theme .md-btn--color-secondary-active {
+  background: rgba(255, 110, 64, 0.12); }
+
+.mdapp--theme .md-card-title--contextual {
+  background: #fff3e0; }
+
+.mdapp--theme .md-card-title--title-contextual {
+  color: #ff6e40; }
+
+.mdapp--theme .md-picker-header {
+  background: #1976d2; }
+
+.mdapp--theme .md-calendar-date--btn::after {
+  background: #1976d2; }
+
+.mdapp--theme .md-clock-hand::before, .mdapp--theme .md-clock-hand::after {
+  background: #1976d2; }
+
+.mdapp--theme .md-circular-progress-path {
+  stroke: #ff6e40; }
+
+.mdapp--theme .md-slider-thumb--on,
+.mdapp--theme .md-slider-track-fill {
+  background: #1976d2; }
+
+.mdapp--theme .md-slider-thumb--discrete-on::after {
+  border-top-color: #1976d2; }
+
+.mdapp--theme .md-tab-indicator {
+  background: #ff6e40; }
+
+.mdapp--theme .md-divider--text-field:not(.md-divider--text-field-error)::after {
+  background: #1976d2; }
+
+.mdapp--theme .md-floating-label--active {
+  color: #1976d2; }
+
+.mdapp--theme .md-text-field-icon--active {
+  color: #1976d2; }
+
+.mdapp--theme .md-text--theme-primary {
+  color: #1976d2; }
+
+.mdapp--theme .md-ink--primary .md-ink {
+  background: rgba(25, 118, 210, 0.26); }
+
+.mdapp--theme .md-background--primary {
+  background: #1976d2; }
+
+.mdapp--theme .md-text--theme-secondary {
+  color: #ff6e40; }
+
+.mdapp--theme .md-ink--secondary .md-ink {
+  background: rgba(255, 110, 64, 0.26); }
+
+.mdapp--theme .md-background--secondary {
+  background: #ff6e40; }
+
+@media screen and (min-width: 1025px) {
+  .mdapp--theme .md-background--primary-hover:hover {
+    background: rgba(25, 118, 210, 0.9); }
+  .mdapp--theme .md-background--secondary-hover:hover {
+    background: rgba(255, 110, 64, 0.9); } }
