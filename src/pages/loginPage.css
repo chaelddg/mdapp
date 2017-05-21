@@ -1,0 +1,19 @@
+.login_page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: auto;
+  min-height: 100vh; }
+  .login_page > .md-grid {
+    width: 100%; }
+
+.login_page .login--logo {
+  width: 100%;
+  height: auto;
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+  .login_page .login--logo span {
+    color: #fff; }

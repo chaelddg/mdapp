@@ -1,0 +1,16 @@
+@import './node_modules/react-md/src/scss/react-md';
+
+// ===============================
+// COLORS
+// ===============================
+$color-white: #fff;
+$color-primary:$md-blue-700;
+$color-secondary:$md-cyan-300;
+
+
+
+// ===============================
+// FONT
+// ===============================
+@import url('https://fonts.googleapis.com/css?family=Leckerli+One');
+$font_cursive:'Leckerli One', cursive;

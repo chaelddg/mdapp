@@ -1,0 +1,5 @@
+@import './node_modules/react-md/src/scss/react-md';
+
+.mdapp--theme{
+	@include react-md-theme-everything($color-primary , $color-secondary);
+}
