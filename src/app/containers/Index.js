@@ -132,9 +132,9 @@ class Index extends PureComponent {
 					renderNode={dialog}
 					contentClassName="md-grid"
 					drawerHeaderChildren={drawerHeaderChildren}
-					mobileDrawerType={NavigationDrawer.DrawerTypes.TEMPORARY_MINI}
-					tabletDrawerType={NavigationDrawer.DrawerTypes.PERSISTENT_MINI}
-					desktopDrawerType={NavigationDrawer.DrawerTypes.FULL_HEIGHT}
+          mobileDrawerType={NavigationDrawer.DrawerTypes.TEMPORARY_MINI}
+          tabletDrawerType={NavigationDrawer.DrawerTypes.PERSISTENT_MINI}
+          desktopDrawerType={NavigationDrawer.DrawerTypes.CLIPPED}
 					toolbarTitle="MDApp"
 					toolbarActions={moreButton}
           toolbarProminentTitle={false}
