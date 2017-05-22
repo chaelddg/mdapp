@@ -27,8 +27,17 @@ const avatarSrc = randomImage();
 class Index extends PureComponent {
 	constructor(props) {
 		super(props);
-		this.state = { visible: false, dialog: null, key: 'inbox' };
+		this.state = {
+		  visible: false,
+      dialog: null,
+      key: 'inbox',
+      user: {
+		    first_name: "",
+        last_name: ""
+      }
+		};
 		this._setPage = this._setPage.bind(this);
+		this._handleUserChange = this._handleUserChange.bind(this);
 		this._navItems = this.props.navItems.map(item => {
 			if (!item.divider) {
 				item.onClick = () => this._setPage(item.key, item.href);
@@ -48,6 +57,12 @@ class Index extends PureComponent {
 		}
 	}
 
+	componentWillReceiveProps(nextProps) {
+	  this.setState({
+      user: Object.assign({}, this.state.user, nextProps.user)
+    })
+  }
+
 	componentWillUnmount() {
 		if (this._timeout) {
 			clearTimeout(this._timeout);
@@ -66,12 +81,15 @@ class Index extends PureComponent {
 		this.context.router.history.push(href)
 	}
 
+  _handleUserChange() {
+
+  }
+
 	render() {
 
-		const { dialog } = this.state;
-		const { user, navItems } = this.props;
+		const { dialog, user } = this.state;
+		const { navItems } = this.props;
 		const _navItems = navItems;
-
 		let drawerHeaderChildren = [
 			<Avatar
 				key={avatarSrc}
@@ -82,7 +100,8 @@ class Index extends PureComponent {
 			/>,
 			<SelectField
 				id="account-switcher"
-				defaultValue={user.first_name}
+				value={user.first_name}
+        onChange={this._handleUserChange}
 				menuItems={[user.first_name]}
 				key="account-switcher"
 				position={SelectField.Positions.BELOW}
@@ -115,18 +134,17 @@ class Index extends PureComponent {
 					drawerHeaderChildren={drawerHeaderChildren}
 					mobileDrawerType={NavigationDrawer.DrawerTypes.TEMPORARY_MINI}
 					tabletDrawerType={NavigationDrawer.DrawerTypes.PERSISTENT_MINI}
-					desktopDrawerType={NavigationDrawer.DrawerTypes.PERSISTENT_MINI}
-					toolbarTitle="Material Design"
+					desktopDrawerType={NavigationDrawer.DrawerTypes.FULL_HEIGHT}
+					toolbarTitle="MDApp"
 					toolbarActions={moreButton}
-					toolbarProminentTitle
+          toolbarProminentTitle={false}
 					contentId="main-content-demo"
 				>
 					<Paper
 						zDepth={1}
 						raiseOnHover={false}
 						className='md-card md-cell md-cell--12'
-						style={{ margin: '0px', width: '100%' }}>
-
+						>
 						<div>
 							<Route exact path={this.props.match.path} component={StarredIndex} />
 							<Route path={`${this.props.match.path}/inbox`} component={InboxItem} />
