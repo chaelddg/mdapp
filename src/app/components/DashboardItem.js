@@ -4,7 +4,7 @@ import Toolbar from 'react-md/lib/Toolbars';
 import DataTable from './DataTable';
 import ToolBar from './ToolBar';
 import Dialog from './Dialog';
-
+import FormGroup from './FormGroup';
 
 class DashboardItem extends PureComponent {
   constructor (props) {
@@ -36,12 +36,16 @@ class DashboardItem extends PureComponent {
           visible={openDialog}
           handleCloseDialog={this.handleOpenDialog}
         >
-          <Toolbar
-            title="Create new row"
-            fixed
-            colored
-            actions={this.closeDialogButton}
-          />
+          <div>
+            <Toolbar
+              title="Create new row"
+              fixed
+              colored
+              actions={this.closeDialogButton}
+            />
+            <FormGroup index={1} />
+          </div>
+
         </Dialog>
       </div>
     );
