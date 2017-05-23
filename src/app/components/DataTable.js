@@ -10,59 +10,6 @@ import TableCardHeader from 'react-md/lib/DataTables/TableCardHeader';
 // import CircularProgress from 'react-md/lib/Progress/CircularProgress';
 // import Button from 'react-md/lib/Buttons/Button';
 
-const movies = [
-  {
-    "id": 1,
-    "title": "Grass-roots zero defect hardware",
-    "year": "11/21/2016"
-  },
-  {
-    "id": 2,
-    "title": "Seamless systematic structure",
-    "year": "5/16/2017"
-  },
-  {
-    "id": 3,
-    "title": "Multi-layered static internet solution",
-    "year": "2/14/2017"
-  },
-  {
-    "id": 4,
-    "title": "Operative asynchronous capability",
-    "year": "1/27/2017"
-  },
-  {
-    "id": 5,
-    "title": "Intuitive full-range flexibility",
-    "year": "5/5/2017"
-  },
-  {
-    "id": 6,
-    "title": "Proactive 5th generation encryption",
-    "year": "10/24/2016"
-  },
-  {
-    "id": 7,
-    "title": "User-centric optimal open system",
-    "year": "4/30/2017"
-  },
-  {
-    "id": 8,
-    "title": "Phased zero administration moderator",
-    "year": "6/8/2016"
-  },
-  {
-    "id": 9,
-    "title": "Synergized well-modulated knowledge base",
-    "year": "5/15/2017"
-  },
-  {
-    "id": 10,
-    "title": "Pre-emptive bi-directional hardware",
-    "year": "6/1/2016"
-  }
-];
-
 class ReactDataTable extends PureComponent {
 	constructor (props) {
 		super(props);
@@ -75,8 +22,8 @@ class ReactDataTable extends PureComponent {
 	}
 
 	render() {
-
-	  const headers = [{title: 'Title', label: 'The movie\'s title'},{title: 'Year', label: 'The movie\'s year'}, {title: 'Comment', label: 'The movie\'s comment'}].map((header, headerIndex) => (
+    const { header, data, tableId } = this.props;
+	  const tableHeader = header.map((header, headerIndex) => (
         <TableColumn
           key={`table-header-${headerIndex}`}
         >
@@ -84,13 +31,16 @@ class ReactDataTable extends PureComponent {
         </TableColumn>
     ));
 
-		const rows = movies.map(({ title, year, id }) => (
-			<TableRow key={id}>
-				<TableColumn>{title}</TableColumn>
-				<TableColumn numeric>{year}</TableColumn>
-				<TableColumn>{title}</TableColumn>
+		const tableRows = data.map(({ first_name, last_name, id, email, sex, phone_number }) => (
+			<TableRow key={`${tableId}-${id}`}>
+				<TableColumn>{first_name}</TableColumn>
+				<TableColumn>{last_name}</TableColumn>
+				<TableColumn>{email}</TableColumn>
+				<TableColumn>{sex}</TableColumn>
+				<TableColumn>{phone_number}</TableColumn>
 			</TableRow>
 		));
+
 		return (
 			<Card>
         <TableCardHeader
@@ -99,16 +49,16 @@ class ReactDataTable extends PureComponent {
         >
         </TableCardHeader>
 				<DataTable
-          plain={true}
+          plain={false}
 					baseId='table_id'
 				>
 					<TableHeader>
 						<TableRow>
-              {headers}
+              {tableHeader}
 						</TableRow>
 					</TableHeader>
 					<TableBody>
-            {rows}
+            {tableRows}
           </TableBody>
 					<TablePagination
 						onPagination={this._handlePagination}

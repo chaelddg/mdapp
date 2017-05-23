@@ -1,5 +1,6 @@
 export default {
 	ajaxCallsInProgress: 0,
 	user: {},
-	authMessage: ""
+	authMessage: "",
+  patients: []
 }
