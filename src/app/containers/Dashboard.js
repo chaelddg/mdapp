@@ -7,6 +7,7 @@ import * as patientActions from '../redux/actions/patientActions';
 
 import Button from 'react-md/lib/Buttons/Button';
 import Toolbar from 'react-md/lib/Toolbars';
+
 import DataTable from '../components/DataTable';
 import ToolBar from '../components/ToolBar';
 import Dialog from '../components/Dialog';
@@ -18,16 +19,22 @@ class Dashboard extends PureComponent {
     super(props);
 
     this.state = {
-      openDialog: false
+      openDialog: false,
+      page: 1,
+      rowsPerPage: 10
     };
 
     this.handleOpenDialog = this.handleOpenDialog.bind(this);
-    this.closeDialogButton = <Button icon onClick={this.handleOpenDialog} tooltipLabel="Close Dialog">close</Button>;
+    this.handlePagination = this.handlePagination.bind(this);
+
+    this.closeDialogButton = <Button icon
+                                     onClick={this.handleOpenDialog}
+                                     tooltipLabel="Close Dialog">close</Button>;
   }
 
   componentWillMount() {
     this.props.actions.clearPatientList();
-    this.props.actions.getPatientList();
+    this.props.actions.getPatientList(10, 0, '', '');
   }
 
   handleOpenDialog() {
@@ -36,26 +43,26 @@ class Dashboard extends PureComponent {
     })
   }
 
+  handlePagination(newStart, rowsPerPage, search, sort, currentPage) {
+    let limit = (newStart + rowsPerPage);
+
+    this.props.actions.getPatientList(limit, newStart, search, sort);
+    this.setState({
+      page: currentPage,
+      rowsPerPage
+    })
+  }
+
   render() {
-    const { openDialog } = this.state;
-    const { patients } = this.props;
+    const { openDialog, page, rowsPerPage } = this.state;
+    const { patients, fetching, count } = this.props;
 
     const header = [
-      {
-        title: 'First Name'
-      },
-      {
-        title: 'Last Name'
-      },
-      {
-        title: 'Email'
-      },
-      {
-        title: 'Gender'
-      },
-      {
-        title: 'Phone Number'
-      }
+      { title: 'Last Name',    key: 'last_name'    },
+      { title: 'First Name',   key: 'first_name'   },
+      { title: 'Email',        key: 'email'        },
+      { title: 'Gender',       key: 'sex'          },
+      { title: 'Phone Number', key: 'phone_number' }
     ];
 
     return (
@@ -66,6 +73,11 @@ class Dashboard extends PureComponent {
           tableId="dashboard-table"
           header={header}
           data={patients}
+          isFetching={fetching}
+          page={page}
+          rowsPerPage={rowsPerPage}
+          handlePagination={this.handlePagination}
+          count={count}
         />
         <Dialog
           visible={openDialog}
@@ -93,7 +105,9 @@ Dashboard.propTypes = {
 
 function mapStateToProps(state, ownProps) {
 	return {
-	  patients: state.patients,
+	  fetching: state.ajaxCallsInProgress > 0,
+	  patients: state.patients.data ? state.patients.data : [],
+    count: state.patients.count ? state.patients.count : 0,
 		user: state.user
 	};
 }

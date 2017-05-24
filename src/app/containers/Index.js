@@ -1,5 +1,4 @@
 import React, { PureComponent } from 'react';
-import { Route } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -12,14 +11,10 @@ import ListItem from 'react-md/lib/Lists/ListItem';
 import MenuButton from 'react-md/lib/Menus/MenuButton';
 import Paper from 'react-md/lib/Papers';
 
-import StarredIndex from './Dashboard';
-import InboxItem from '../components/InboxItem';
-import InboxInputs from '../components/InboxInputs';
-
-import localdb from '../../helpers/localdb';
+import RouterContainer from './RouteContainer';
 
 import * as authActions from '../redux/actions/authActions';
-
+import localdb from '../../helpers/localdb';
 import randomImage from '../../helpers/randomImage';
 
 const avatarSrc = randomImage();
@@ -90,6 +85,7 @@ class Index extends PureComponent {
 		const { dialog, user } = this.state;
 		const { navItems } = this.props;
 		const _navItems = navItems;
+
 		let drawerHeaderChildren = [
 			<Avatar
 				key={avatarSrc}
@@ -145,12 +141,7 @@ class Index extends PureComponent {
 						raiseOnHover={false}
 						className='md-card md-cell md-cell--12'
 						>
-						<div>
-							<Route exact path={this.props.match.path} component={StarredIndex} />
-							<Route path={`${this.props.match.path}/inbox`} component={InboxItem} />
-							<Route path={`${this.props.match.path}/send-email`} component={InboxInputs} />
-						</div>
-
+            <RouterContainer path={this.props.match.path} />
 					</Paper>
 				</NavigationDrawer>
 			</div>
