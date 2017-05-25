@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/src/app/containers/Dashboard.js" line="84" />
+    <bookmark url="file://$PROJECT_DIR$/src/app/containers/Dashboard.js" line="105" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4d7875ca-9d62-4baf-b8e2-c5388f5babb4" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/components/DataTable.js" afterPath="$PROJECT_DIR$/src/app/components/DataTable.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/containers/Dashboard.js" afterPath="$PROJECT_DIR$/src/app/containers/Dashboard.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/redux/actions/patientActions.js" afterPath="$PROJECT_DIR$/src/app/redux/actions/patientActions.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -31,8 +29,8 @@
           <file leaf-file-name="Dashboard.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/app/containers/Dashboard.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="425">
-                  <caret line="73" column="68" lean-forward="false" selection-start-line="73" selection-start-column="68" selection-end-line="73" selection-end-column="68" />
+                <state relative-caret-position="612">
+                  <caret line="96" column="0" lean-forward="false" selection-start-line="96" selection-start-column="0" selection-end-line="96" selection-end-column="0" />
                   <folding>
                     <element signature="e#0#45#0" expanded="true" />
                   </folding>
@@ -128,8 +126,8 @@
           <file leaf-file-name="DataTable.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/app/components/DataTable.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="184">
-                  <caret line="22" column="56" lean-forward="false" selection-start-line="22" selection-start-column="56" selection-end-line="22" selection-end-column="56" />
+                <state relative-caret-position="282">
+                  <caret line="26" column="31" lean-forward="true" selection-start-line="26" selection-start-column="31" selection-end-line="26" selection-end-column="31" />
                   <folding>
                     <element signature="e#0#46#0" expanded="true" />
                   </folding>
@@ -196,6 +194,7 @@
       <find>clearPatientList</find>
       <find>console</find>
       <find>getPatientList</find>
+      <find>:</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -606,12 +605,12 @@
       <workItem from="1495579253643" duration="14482000" />
       <workItem from="1495675117101" duration="933000" />
       <workItem from="1495682411323" duration="47000" />
-      <workItem from="1495682482065" duration="5799000" />
+      <workItem from="1495682482065" duration="10506000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="145294000" />
+    <option name="totallyTimeSpent" value="150001000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -987,7 +986,7 @@
         <state relative-caret-position="17">
           <caret line="22" column="8" lean-forward="true" selection-start-line="22" selection-start-column="8" selection-end-line="22" selection-end-column="8" />
           <folding>
-            <element signature="e#0#45#0" expanded="true" />
+            <element signature="e#0#45#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1012,8 +1011,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app/components/DataTable.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="22" column="56" lean-forward="false" selection-start-line="22" selection-start-column="56" selection-end-line="22" selection-end-column="56" />
+        <state relative-caret-position="282">
+          <caret line="26" column="31" lean-forward="true" selection-start-line="26" selection-start-column="31" selection-end-line="26" selection-end-column="31" />
           <folding>
             <element signature="e#0#46#0" expanded="true" />
           </folding>
@@ -1022,8 +1021,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app/containers/Dashboard.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="73" column="68" lean-forward="false" selection-start-line="73" selection-start-column="68" selection-end-line="73" selection-end-column="68" />
+        <state relative-caret-position="612">
+          <caret line="96" column="0" lean-forward="false" selection-start-line="96" selection-start-column="0" selection-end-line="96" selection-end-column="0" />
           <folding>
             <element signature="e#0#45#0" expanded="true" />
           </folding>

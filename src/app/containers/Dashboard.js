@@ -3,10 +3,12 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
-import * as patientActions from '../redux/actions/patientActions';
+import _ from 'lodash';
 
 import Button from 'react-md/lib/Buttons/Button';
 import Toolbar from 'react-md/lib/Toolbars';
+
+import * as patientActions from '../redux/actions/patientActions';
 
 import DataTable from '../components/DataTable';
 import ToolBar from '../components/ToolBar';
@@ -22,6 +24,7 @@ class Dashboard extends PureComponent {
       openDialog: false,
       page: 1,
       rowsPerPage: 10,
+      search: '',
       sortState: {
         key: 'last_name',
         sort: 'asc',
@@ -29,9 +32,12 @@ class Dashboard extends PureComponent {
       }
     };
 
+    this.searchThrottle = _.debounce(this.searchThrottle, 800);
+
     this.handleOpenDialog = this.handleOpenDialog.bind(this);
     this.handlePagination = this.handlePagination.bind(this);
     this.handleColumnSort = this.handleColumnSort.bind(this);
+    this.handleSearch     = this.handleSearch.bind(this);
 
     this.closeDialogButton = <Button icon
                                      onClick={this.handleOpenDialog}
@@ -43,14 +49,19 @@ class Dashboard extends PureComponent {
     this.props.actions.getPatientList(10, 0, '', 'asc', 'last_name');
   }
 
+  componentWillUnmount() {
+    this.searchThrottle.cancel(this, this.searchThrottle);
+  }
+
   handleOpenDialog() {
     this.setState({
       openDialog: !this.state.openDialog
     });
   }
 
-  handlePagination(newStart, rowsPerPage, search, currentPage) {
+  handlePagination(newStart, rowsPerPage, currentPage) {
     const { key, sort } = this.state.sortState;
+    let search = this.state.search;
     let limit = (newStart + rowsPerPage);
 
     this.props.actions.getPatientList(limit, newStart, search, sort, key);
@@ -74,11 +85,21 @@ class Dashboard extends PureComponent {
         this.setState({sortState: sortData, page: 1, rowsPerPage: 10});
       }
     }
+  }
 
+  handleSearch(search) {
+    this.setState({search}, () => {
+      this.searchThrottle(search);
+    });
+  }
+
+  searchThrottle(search) {
+    const { sort, key } = this.state.sortState;
+    this.props.actions.getPatientList(10, 0, search, sort, key);
   }
 
   render() {
-    const { openDialog, page, rowsPerPage } = this.state;
+    const { openDialog, page, rowsPerPage, search } = this.state;
     const { patients, fetching, count } = this.props;
     const header = [
       { title: 'Last Name',    key: 'last_name',    sort: 'asc', sortable: true },
@@ -96,11 +117,13 @@ class Dashboard extends PureComponent {
           tableId="dashboard-table"
           header={header}
           data={patients}
+          search={search}
           isFetching={fetching}
           page={page}
           rowsPerPage={rowsPerPage}
           handlePagination={this.handlePagination}
           handleColumnSort={this.handleColumnSort}
+          handleSearch={this.handleSearch}
           count={count}
         />
         <Dialog

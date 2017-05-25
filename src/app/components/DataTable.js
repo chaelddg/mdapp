@@ -17,10 +17,11 @@ class ReactDataTable extends PureComponent {
 
 		this.handlePagination = this.handlePagination.bind(this);
 		this.handleColumnSort = this.handleColumnSort.bind(this);
+		this.handleSearch     = this.handleSearch.bind(this);
 	}
 
 	handlePagination(newStart, rowsPerPage, currentPage) {
-    this.props.handlePagination(newStart, rowsPerPage, '', currentPage);
+    this.props.handlePagination(newStart, rowsPerPage, currentPage);
   }
 
   handleColumnSort(data, ctx) {
@@ -29,8 +30,12 @@ class ReactDataTable extends PureComponent {
 	  this.props.handleColumnSort(sortData);
   }
 
+  handleSearch(data, ctx) {
+	  this.props.handleSearch(data);
+  }
+
 	render() {
-    const { header, data, tableId, count, isFetching, page, rowsPerPage } = this.props;
+    const { header, data, tableId, count, isFetching, page, rowsPerPage, search } = this.props;
 	  const tableHeader = header.map((header, headerIndex) => (
         <TableColumn
           onClick={this.handleColumnSort.bind(this, header)}
@@ -62,6 +67,8 @@ class ReactDataTable extends PureComponent {
               id={`table-search-${tableId}`}
               label='Search'
               style={{marginRight: '10px'}}
+              value={search}
+              onChange={this.handleSearch}
               className={`md-cell--3 ${this.props.className}`}
               inputClassName='md-text-field--toolbar'
             />
