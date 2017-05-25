@@ -42,6 +42,22 @@ class Dashboard extends PureComponent {
     this.closeDialogButton = <Button icon
                                      onClick={this.handleOpenDialog}
                                      tooltipLabel="Close Dialog">close</Button>;
+
+    this.tableActions = [
+      {
+        icon: 'edit',
+        primary: true,
+        text: 'Edit',
+        class: 'button-icon--info material-icons',
+        handler: this.handleOpenDialog.bind(this)
+      },
+      {
+        icon: 'delete',
+        text: 'Remove',
+        handler: this.handleOpenDialog.bind(this),
+        class: 'button-icon--success material-icons'
+      }
+    ];
   }
 
   componentWillMount() {
@@ -72,16 +88,16 @@ class Dashboard extends PureComponent {
   }
 
   handleColumnSort(sortData) {
-    let { sortState } = this.state;
+    let { sortState, search } = this.state;
     const { key, sortable, sort } = sortData;
     if (sortable) {
       // IF STATE COL KEY IS EQ TO CLICK COL KEY CHANGE SORT KEY
       if (sortState['key'] === key) {
         sortState['sort'] = sortState['sort'] === 'asc' ? 'desc' : 'asc';
-        this.props.actions.getPatientList(10, 0, '', sortState['sort'], key);
+        this.props.actions.getPatientList(10, 0, search, sortState['sort'], key);
         this.setState({sortState: sortState, page: 1, rowsPerPage: 10});
       } else {
-        this.props.actions.getPatientList(10, 0, '', sort, key);
+        this.props.actions.getPatientList(10, 0, search, sort, key);
         this.setState({sortState: sortData, page: 1, rowsPerPage: 10});
       }
     }
@@ -102,11 +118,18 @@ class Dashboard extends PureComponent {
     const { openDialog, page, rowsPerPage, search } = this.state;
     const { patients, fetching, count } = this.props;
     const header = [
-      { title: 'Last Name',    key: 'last_name',    sort: 'asc', sortable: true },
-      { title: 'First Name',   key: 'first_name',   sort: 'asc', sortable: true },
-      { title: 'Email',        key: 'email',        sort: 'asc', sortable: true },
-      { title: 'Gender',       key: 'sex',          sort: 'asc', sortable: true },
-      { title: 'Phone Number', key: 'phone_number', sortable: false }
+      { title: 'Last Name',    key: 'last_name',    sort: 'asc', sortable: true  },
+      { title: 'First Name',   key: 'first_name',   sort: 'asc', sortable: true  },
+      { title: 'Email',        key: 'email',        sort: 'asc', sortable: true  },
+      { title: 'Gender',       key: 'sex',          sort: 'asc', sortable: true  },
+      { title: 'Phone Number', key: 'phone_number',              sortable: false },
+      {
+        title: 'Action',
+        key: '',
+        type: 'button',
+        obj: this.tableActions,
+        sortable: false
+      }
     ];
 
     return (

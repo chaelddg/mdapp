@@ -2,6 +2,7 @@ import React, { PureComponent }  from 'react';
 import FontIcon from 'react-md/lib/FontIcons';
 import TextField from 'react-md/lib/TextFields';
 import Card from 'react-md/lib/Cards/Card';
+import Button from 'react-md/lib/Buttons/Button';
 
 import DataTable from 'react-md/lib/DataTables/DataTable';
 import TableHeader from 'react-md/lib/DataTables/TableHeader';
@@ -15,9 +16,10 @@ class ReactDataTable extends PureComponent {
 	constructor (props) {
 		super(props);
 
-		this.handlePagination = this.handlePagination.bind(this);
-		this.handleColumnSort = this.handleColumnSort.bind(this);
-		this.handleSearch     = this.handleSearch.bind(this);
+		this.handlePagination      = this.handlePagination.bind(this);
+		this.handleColumnSort      = this.handleColumnSort.bind(this);
+		this.constructActionButton = this.constructActionButton.bind(this);
+		this.handleSearch          = this.handleSearch.bind(this);
 	}
 
 	handlePagination(newStart, rowsPerPage, currentPage) {
@@ -32,6 +34,40 @@ class ReactDataTable extends PureComponent {
 
   handleSearch(data, ctx) {
 	  this.props.handleSearch(data);
+  }
+
+  constructActionButton(col, c, item) {
+    switch (col.type) {
+      case 'button':
+        return (<TableColumn
+          key={`data-row-col-${c}-action`}
+          className='md-data-table-actions'
+          style={{padding: '0 !important'}}>
+          {
+            col.obj.map((_obj, _index) => {
+                if (item.status && item.status === 'Inactive' && _obj.text === 'Switch') {
+                  return (<Button
+                    icon
+                    disabled
+                    tooltipLabel=''
+                    key={`data-row-col-${_index}-action-button`}
+                  >{_obj.icon}</Button>)
+                }
+                return (<Button
+                  icon
+                  primary={_obj.primary}
+                  iconClassName={_obj.class}
+                  tooltipLabel={_obj.text}
+                  tooltipPosition='bottom'
+                  key={`data-row-col-${_index}-action-button`}
+                  onClick={_obj.handler.bind(this, item, _obj.text)}>{_obj.icon}</Button>)
+              }
+            )
+          }
+        </TableColumn>);
+      default:
+        return null
+    }
   }
 
 	render() {
@@ -50,7 +86,10 @@ class ReactDataTable extends PureComponent {
 			<TableRow key={`${tableId}-${rowIndex}`}>
         {
           header.map((item, itemIndex) => {
-            return <TableColumn key={`row-item-${itemIndex}`}>{rowItem[item.key]}</TableColumn>
+            return item.type ?
+              this.constructActionButton(item, itemIndex, rowItem)
+              :
+              <TableColumn key={`row-item-${itemIndex}`}>{rowItem[item.key]}</TableColumn>
           })
         }
 			</TableRow>
@@ -80,11 +119,12 @@ class ReactDataTable extends PureComponent {
             <h3 style={{textAlign: 'center', padding: '2em'}}>Fetching ...</h3>
             :
             <DataTable
-              plain={false}
+              plain={true}
               baseId='table_id'
             >
             <TableHeader>
-              <TableRow>
+              <TableRow
+                autoAdjust={false}>
                 {tableHeader}
               </TableRow>
             </TableHeader>
