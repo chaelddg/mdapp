@@ -16,18 +16,26 @@ class ReactDataTable extends PureComponent {
 		super(props);
 
 		this.handlePagination = this.handlePagination.bind(this);
+		this.handleColumnSort = this.handleColumnSort.bind(this);
 	}
 
 	handlePagination(newStart, rowsPerPage, currentPage) {
-    this.props.handlePagination(newStart, rowsPerPage, '', '', currentPage);
+    this.props.handlePagination(newStart, rowsPerPage, '', currentPage);
+  }
+
+  handleColumnSort(data, ctx) {
+	  const { key, sortable, sort } = data;
+	  let sortData = { key, sortable, sort };
+	  this.props.handleColumnSort(sortData);
   }
 
 	render() {
     const { header, data, tableId, count, isFetching, page, rowsPerPage } = this.props;
 	  const tableHeader = header.map((header, headerIndex) => (
         <TableColumn
+          onClick={this.handleColumnSort.bind(this, header)}
           key={`table-header-${headerIndex}-${tableId}`}
-          sorted={true}
+          sorted={header.sortable}
         >
           {header.title}
         </TableColumn>

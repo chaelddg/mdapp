@@ -11,10 +11,12 @@ export function clearPatientList () {
   }
 }
 
-export function getPatientList(limit, start, search, sort = 'asc') {
+export function getPatientList(limit, start, search, sort, sort_key) {
   return function (dispatch) {
     dispatch(beginAjaxCall());
-    return axios.get(`/patient/list?start=${start}&limit=${limit}&search=${search || ''}&sort=${sort}`, {
+    return axios.get(
+      `/patient/list?start=${start}&limit=${limit}&search=${search || ''}&sort=${sort}&sort_key=${sort_key}`,
+      {
       headers: {
         'Authorization': localdb.getItem('token')
       }
