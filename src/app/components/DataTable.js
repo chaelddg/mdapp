@@ -40,9 +40,7 @@ class ReactDataTable extends PureComponent {
     switch (col.type) {
       case 'button':
         return (<TableColumn
-          key={`data-row-col-${c}-action`}
-          className='md-data-table-actions'
-          style={{padding: '0 !important'}}>
+          key={`data-row-col-${c}-action`}>
           {
             col.obj.map((_obj, _index) => {
                 if (item.status && item.status === 'Inactive' && _obj.text === 'Switch') {
@@ -71,8 +69,9 @@ class ReactDataTable extends PureComponent {
   }
 
 	render() {
-    const { header, data, tableId, count, isFetching, page, rowsPerPage, search } = this.props;
-	  const tableHeader = header.map((header, headerIndex) => (
+    const { header, data, tableId, count, isFetching, page, rowsPerPage, search, hasActions } = this.props;
+	  const tableHeader = header.map((header, headerIndex) => {
+      return header.sortable ?
         <TableColumn
           onClick={this.handleColumnSort.bind(this, header)}
           key={`table-header-${headerIndex}-${tableId}`}
@@ -80,16 +79,27 @@ class ReactDataTable extends PureComponent {
         >
           {header.title}
         </TableColumn>
-    ));
+        :
+        <TableColumn
+          className="prevent-grow"
+          onClick={this.handleColumnSort.bind(this, header)}
+          key={`table-header-${headerIndex}-${tableId}`}
+        >
+          {header.title}
+        </TableColumn>
+    });
 
 		const tableRows = data.map((rowItem, rowIndex) => (
-			<TableRow key={`${tableId}-${rowIndex}`}>
+			<TableRow key={`${tableId}-${rowIndex}`}
+                className={hasActions ? 'override-md-table-row-action-padding' : ''}>
         {
           header.map((item, itemIndex) => {
             return item.type ?
               this.constructActionButton(item, itemIndex, rowItem)
               :
-              <TableColumn key={`row-item-${itemIndex}`}>{rowItem[item.key]}</TableColumn>
+              <TableColumn
+                className="override-md-table-row-padding"
+                key={`row-item-${itemIndex}`}>{rowItem[item.key]}</TableColumn>
           })
         }
 			</TableRow>

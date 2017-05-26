@@ -138,6 +138,7 @@ class Dashboard extends PureComponent {
         <br/>
         <DataTable
           tableId="dashboard-table"
+          hasActions={true}
           header={header}
           data={patients}
           search={search}
