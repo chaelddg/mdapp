@@ -26,17 +26,12 @@
 //@import 'layout';
 //@import 'pages/loginPage';
 
-.override-md-table-row-padding {
-  & > td.md-table-column--data {
-    padding-top: 10px !important;
-    padding-bottom: 10px !important;
-  }
+.override-action-text-td {
+  padding-top: 10px !important;
+  padding-bottom: 0px !important;
 }
 
-.override-md-table-row-action-padding {
-  & > td.md-table-column--data {
-    padding-top: 0px !important;
-    padding-bottom: 0px !important;
-  }
+.override-action-button-td {
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
 }
-

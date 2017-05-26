@@ -40,25 +40,18 @@ class ReactDataTable extends PureComponent {
     switch (col.type) {
       case 'button':
         return (<TableColumn
+          className="override-action-button-td"
           key={`data-row-col-${c}-action`}>
           {
             col.obj.map((_obj, _index) => {
-                if (item.status && item.status === 'Inactive' && _obj.text === 'Switch') {
-                  return (<Button
-                    icon
-                    disabled
-                    tooltipLabel=''
-                    key={`data-row-col-${_index}-action-button`}
-                  >{_obj.icon}</Button>)
-                }
-                return (<Button
-                  icon
-                  primary={_obj.primary}
-                  iconClassName={_obj.class}
-                  tooltipLabel={_obj.text}
-                  tooltipPosition='bottom'
-                  key={`data-row-col-${_index}-action-button`}
-                  onClick={_obj.handler.bind(this, item, _obj.text)}>{_obj.icon}</Button>)
+              return <Button
+                icon
+                primary={_obj.primary}
+                iconClassName={_obj.class}
+                tooltipLabel={_obj.text}
+                tooltipPosition='bottom'
+                key={`data-row-col-${_index}-action-button`}
+                onClick={_obj.handler.bind(this, item, _obj.text)}>{_obj.icon}</Button>
               }
             )
           }
@@ -90,17 +83,23 @@ class ReactDataTable extends PureComponent {
     });
 
 		const tableRows = data.map((rowItem, rowIndex) => (
-			<TableRow key={`${tableId}-${rowIndex}`}
-                className={hasActions ? 'override-md-table-row-action-padding' : ''}>
+			<TableRow key={`${tableId}-${rowIndex}`}>
         {
-          header.map((item, itemIndex) => {
-            return item.type ?
-              this.constructActionButton(item, itemIndex, rowItem)
-              :
-              <TableColumn
-                className="override-md-table-row-padding"
-                key={`row-item-${itemIndex}`}>{rowItem[item.key]}</TableColumn>
-          })
+          hasActions ?
+            header.map((item, itemIndex) => {
+              return item.type ?
+                this.constructActionButton(item, itemIndex, rowItem)
+                :
+                <TableColumn
+                  className="override-action-td"
+                  key={`row-item-${itemIndex}`}>{rowItem[item.key]}</TableColumn>
+            })
+            :
+            header.map((item, itemIndex) => {
+                return <TableColumn
+                  className="override-action-td"
+                  key={`row-item-${itemIndex}`}>{rowItem[item.key]}</TableColumn>
+            })
         }
 			</TableRow>
 		));
