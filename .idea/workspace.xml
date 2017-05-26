@@ -4,9 +4,7 @@
     <bookmark url="file://$PROJECT_DIR$/src/app/containers/Dashboard.js" line="121" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4d7875ca-9d62-4baf-b8e2-c5388f5babb4" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/helpers/request.js" afterPath="$PROJECT_DIR$/src/helpers/request.js" />
-    </list>
+    <list default="true" id="4d7875ca-9d62-4baf-b8e2-c5388f5babb4" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -611,12 +609,12 @@
       <workItem from="1495675117101" duration="933000" />
       <workItem from="1495682411323" duration="47000" />
       <workItem from="1495682482065" duration="16371000" />
-      <workItem from="1495757818419" duration="7286000" />
+      <workItem from="1495757818419" duration="7412000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="163152000" />
+    <option name="totallyTimeSpent" value="163278000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
