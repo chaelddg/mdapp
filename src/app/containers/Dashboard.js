@@ -124,7 +124,7 @@ class Dashboard extends PureComponent {
       { title: 'Gender',       key: 'sex',          sort: 'asc', sortable: true  },
       { title: 'Phone Number', key: 'phone_number',              sortable: false },
       {
-        title: 'Action',
+        title: 'Actions',
         key: '',
         type: 'button',
         obj: this.tableActions,

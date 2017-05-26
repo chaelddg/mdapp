@@ -5,11 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4d7875ca-9d62-4baf-b8e2-c5388f5babb4" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/components/DataTable.js" afterPath="$PROJECT_DIR$/src/app/components/DataTable.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/base.css" afterPath="$PROJECT_DIR$/src/base.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/helpers/request.js" afterPath="$PROJECT_DIR$/src/helpers/request.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sass/base.scss" afterPath="$PROJECT_DIR$/src/sass/base.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/containers/Dashboard.js" afterPath="$PROJECT_DIR$/src/app/containers/Dashboard.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -32,8 +28,8 @@
           <file leaf-file-name="Dashboard.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/app/containers/Dashboard.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="493">
-                  <caret line="140" column="26" lean-forward="false" selection-start-line="140" selection-start-column="22" selection-end-line="140" selection-end-column="26" />
+                <state relative-caret-position="816">
+                  <caret line="126" column="23" lean-forward="false" selection-start-line="126" selection-start-column="23" selection-end-line="126" selection-end-column="23" />
                   <folding>
                     <element signature="e#0#45#0" expanded="true" />
                   </folding>
@@ -615,12 +611,12 @@
       <workItem from="1495675117101" duration="933000" />
       <workItem from="1495682411323" duration="47000" />
       <workItem from="1495682482065" duration="16371000" />
-      <workItem from="1495757818419" duration="6657000" />
+      <workItem from="1495757818419" duration="7255000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="162523000" />
+    <option name="totallyTimeSpent" value="163121000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1015,8 +1011,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app/containers/Dashboard.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="140" column="26" lean-forward="false" selection-start-line="140" selection-start-column="22" selection-end-line="140" selection-end-column="26" />
+        <state relative-caret-position="816">
+          <caret line="126" column="23" lean-forward="false" selection-start-line="126" selection-start-column="23" selection-end-line="126" selection-end-column="23" />
           <folding>
             <element signature="e#0#45#0" expanded="true" />
           </folding>
