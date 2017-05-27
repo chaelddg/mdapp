@@ -6,7 +6,7 @@ import SelectionControl from 'react-md/lib/SelectionControls/SelectionControl';
 
 const TYPES = ['Ice Cream', 'Pastry', 'Other'];
 
-const FormGroup = ({ index }) => (
+const CRMForm = ({ index }) => (
   <section className="md-grid" aria-labelledby={`new-row-group-${index + 1}`}>
     <h2 id={`new-row-group-${index + 1}`} className="md-cell md-cell--12">New Row {index + 1}</h2>
     <TextField
@@ -100,8 +100,8 @@ const FormGroup = ({ index }) => (
   </section>
 );
 
-FormGroup.propTypes = {
+CRMForm.propTypes = {
   index: PropTypes.number.isRequired,
 };
 
-export default FormGroup;
+export default CRMForm;

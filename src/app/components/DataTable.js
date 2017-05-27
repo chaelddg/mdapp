@@ -62,7 +62,7 @@ class ReactDataTable extends PureComponent {
   }
 
 	render() {
-    const { header, data, tableId, count, isFetching, page, rowsPerPage, search, hasActions } = this.props;
+    const { header, data, tableId, count, isFetching, page, rowsPerPage, search, hasActions, cardHeader } = this.props;
 	  const tableHeader = header.map((header, headerIndex) => {
       return header.sortable ?
         <TableColumn
@@ -107,7 +107,7 @@ class ReactDataTable extends PureComponent {
 		return (
 			<Card>
         <TableCardHeader
-          title="Nutrition"
+          title={cardHeader}
           visible={false}
           children={[
             <TextField

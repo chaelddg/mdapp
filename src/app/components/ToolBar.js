@@ -17,10 +17,11 @@ class ReactToolBar extends PureComponent {
   }
 
   render() {
+    const { title } = this.props;
     return (
       <Card>
         <Toolbar
-          title="MDapp / Dashboard"
+          title={title}
           actions={this.actions}
         />
       </Card>

@@ -5,26 +5,25 @@
 @import './node_modules/react-md/src/scss/bundles/indigo-pink';
 
 
-
-
 // =============================
 // vars
 // =============================
-//@import 'variables';
+@import 'variables';
 
+@include react-md-theme-everything($color-primary , $color-secondary);
 // =============================
 // components
 // =============================
-//@import 'components/grid';
-//@import 'components/typography';
-//@import 'components/button';
+@import 'components/grid';
+@import 'components/typography';
+@import 'components/button';
 
 
 // =============================
 // pages
 // =============================
 //@import 'layout';
-//@import 'pages/loginPage';
+@import 'pages/loginPage';
 
 .override-action-text-td {
   padding-top: 10px !important;

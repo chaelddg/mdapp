@@ -8,15 +8,15 @@ import _ from 'lodash';
 import Button from 'react-md/lib/Buttons/Button';
 import Toolbar from 'react-md/lib/Toolbars';
 
-import * as patientActions from '../redux/actions/patientActions';
+import * as accountActions from '../redux/actions/accountActions';
 
 import DataTable from '../components/DataTable';
 import ToolBar from '../components/ToolBar';
 import Dialog from '../components/Dialog';
-import PatientForm from '../components/PatientForm';
+import CRMForm from '../components/CRMForm';
 
 
-class Dashboard extends PureComponent {
+class CRM extends PureComponent {
   constructor (props) {
     super(props);
 
@@ -61,8 +61,8 @@ class Dashboard extends PureComponent {
   }
 
   componentWillMount() {
-    this.props.actions.clearPatientList();
-    this.props.actions.getPatientList(10, 0, '', 'asc', 'last_name');
+    this.props.actions.clearAccountList();
+    this.props.actions.getAccountList(10, 0, '', 'asc', 'last_name');
   }
 
   componentWillUnmount() {
@@ -80,7 +80,7 @@ class Dashboard extends PureComponent {
     let search = this.state.search;
     let limit = (newStart + rowsPerPage);
 
-    this.props.actions.getPatientList(limit, newStart, search, sort, key);
+    this.props.actions.getAccountList(limit, newStart, search, sort, key);
     this.setState({
       page: currentPage,
       rowsPerPage
@@ -94,10 +94,10 @@ class Dashboard extends PureComponent {
       // IF STATE COL KEY IS EQ TO CLICK COL KEY CHANGE SORT KEY
       if (sortState['key'] === key) {
         sortState['sort'] = sortState['sort'] === 'asc' ? 'desc' : 'asc';
-        this.props.actions.getPatientList(10, 0, search, sortState['sort'], key);
+        this.props.actions.getAccountList(10, 0, search, sortState['sort'], key);
         this.setState({sortState: sortState, page: 1, rowsPerPage: 10});
       } else {
-        this.props.actions.getPatientList(10, 0, search, sort, key);
+        this.props.actions.getAccountList(10, 0, search, sort, key);
         this.setState({sortState: sortData, page: 1, rowsPerPage: 10});
       }
     }
@@ -111,12 +111,12 @@ class Dashboard extends PureComponent {
 
   searchThrottle(search) {
     const { sort, key } = this.state.sortState;
-    this.props.actions.getPatientList(10, 0, search, sort, key);
+    this.props.actions.getAccountList(10, 0, search, sort, key);
   }
 
   render() {
     const { openDialog, page, rowsPerPage, search } = this.state;
-    const { patients, fetching, count } = this.props;
+    const { accounts, fetching, count } = this.props;
     const header = [
       { title: 'Last Name',    key: 'last_name',    sort: 'asc', sortable: true  },
       { title: 'First Name',   key: 'first_name',   sort: 'asc', sortable: true  },
@@ -135,15 +135,15 @@ class Dashboard extends PureComponent {
     return (
       <div style={{ padding: "1em" }}>
         <ToolBar
-          title={"MDapp / Dashboard"}
+          title={"MDapp / CRM"}
           handleOpenDialog={this.handleOpenDialog} />
         <br/>
         <DataTable
-          tableId="patients-table"
+          tableId="accounts-table"
           hasActions={true}
-          cardHeader={'Patients'}
+          cardHeader={'Accounts'}
           header={header}
-          data={patients}
+          data={accounts}
           search={search}
           isFetching={fetching}
           page={page}
@@ -159,12 +159,12 @@ class Dashboard extends PureComponent {
         >
           <div>
             <Toolbar
-              title="Create New Patient"
+              title="Create New Account"
               fixed
               colored
               actions={this.closeDialogButton}
             />
-            <PatientForm index={1} />
+            <CRMForm index={1} />
           </div>
 
         </Dialog>
@@ -173,23 +173,23 @@ class Dashboard extends PureComponent {
   }
 }
 
-Dashboard.propTypes = {
-	user: PropTypes.object.isRequired
+CRM.propTypes = {
+  user: PropTypes.object.isRequired
 };
 
 function mapStateToProps(state, ownProps) {
-	return {
-	  fetching: state.ajaxCallsInProgress > 0,
-	  patients: state.patients.data ? state.patients.data : [],
-    count: state.patients.count ? state.patients.count : 0,
-		user: state.user
-	};
+  return {
+    fetching: state.ajaxCallsInProgress > 0,
+    accounts: state.accounts.data ? state.accounts.data : [],
+    count: state.accounts.count ? state.accounts.count : 0,
+    user: state.user
+  };
 }
 
 function mapDispatchToProps(dispatch) {
-	return {
-		actions: bindActionCreators(patientActions, dispatch)
-	};
+  return {
+    actions: bindActionCreators(accountActions, dispatch)
+  };
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Dashboard));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CRM));
