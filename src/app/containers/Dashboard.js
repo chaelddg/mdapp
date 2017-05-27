@@ -154,6 +154,7 @@ class Dashboard extends PureComponent {
           count={count}
         />
         <Dialog
+          dialogId="patients-dialog"
           visible={openDialog}
           handleCloseDialog={this.handleOpenDialog}
         >

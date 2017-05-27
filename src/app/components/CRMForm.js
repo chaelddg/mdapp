@@ -1,103 +1,119 @@
 import React  from 'react';
 import PropTypes from 'prop-types';
+import Card from 'react-md/lib/Cards/Card';
+import Divider from 'react-md/lib/Dividers';
 import SelectField from 'react-md/lib/SelectFields';
 import TextField from 'react-md/lib/TextFields';
-import SelectionControl from 'react-md/lib/SelectionControls/SelectionControl';
+import FontIcon from 'react-md/lib/FontIcons';
+import Button from 'react-md/lib/Buttons/Button';
 
-const TYPES = ['Ice Cream', 'Pastry', 'Other'];
+const TYPES = [
+  { name: 'Doctor', value: 'doctor' },
+  { name: 'Nurse', value: 'nurse' },
+  { name: 'Receptionist', value: 'receptionist' },
+  { name: 'Laboratory', value: 'laboratory' }
+];
 
-const CRMForm = ({ index }) => (
-  <section className="md-grid" aria-labelledby={`new-row-group-${index + 1}`}>
-    <h2 id={`new-row-group-${index + 1}`} className="md-cell md-cell--12">New Row {index + 1}</h2>
-    <TextField
-      id={`dessert-name-${index}`}
-      name={`name-${index}`}
-      label="Dessert"
-      customSize="title"
-      defaultValue="Magic"
-      placeholder="Ice Cream"
-      className="md-cell"
-    />
-    <SelectField
-      id={`dessert-type-${index}`}
-      name={`type-${index}`}
-      label="Type"
-      menuItems={TYPES}
-      defaultValue="Other"
-      className="md-cell md-cell--bottom"
-    />
-    <TextField
-      id={`dessert-calories-${index}`}
-      name={`calories-${index}`}
-      type="number"
-      label="Calories"
-      defaultValue={172}
-      placeholder="172"
-      className="md-cell md-cell--bottom"
-    />
-    <TextField
-      id={`dessert-fat-${index}`}
-      name={`fat-${index}`}
-      type="number"
-      label="Fat"
-      defaultValue={3}
-      placeholder="3"
-      className="md-cell"
-    />
-    <TextField
-      id={`dessert-carbs-${index}`}
-      name={`carbs-${index}`}
-      type="number"
-      label="Carbs"
-      defaultValue={30}
-      placeholder="30"
-      className="md-cell"
-    />
-    <TextField
-      id={`dessert-protein-${index}`}
-      name={`protein-${index}`}
-      type="number"
-      label="Protein"
-      defaultValue={12}
-      placeholder="12"
-      className="md-cell"
-    />
-    <TextField
-      id={`dessert-sodium${index}`}
-      name={`sodium-${index}`}
-      type="number"
-      label="Sodium"
-      defaultValue={382}
-      placeholder="382"
-      className="md-cell"
-    />
-    <TextField
-      id={`dessert-calcium-${index}`}
-      name={`calcium-${index}`}
-      type="number"
-      label="Calcium"
-      defaultValue={3}
-      placeholder="3"
-      className="md-cell"
-    />
-    <TextField
-      id={`dessert-iron-${index}`}
-      name={`iron-${index}`}
-      type="number"
-      label="Iron"
-      defaultValue={9}
-      placeholder="9"
-      className="md-cell"
-    />
-    <SelectionControl
-      id={`dessert-random-placement-${index}`}
-      name={`random-placement-${index}`}
-      type="checkbox"
-      label="Place randomly in table?"
-      defaultChecked
-      className="md-cell md-cell--12"
-    />
-  </section>
+const STATUS = [
+  { name: 'Active', value: 'active' },
+  { name: 'In-active', value: 'in_active' }
+];
+
+const CRMForm = ({ index, handleFormChange }) => (
+  <Card className="override-dialog-form-margin">
+    <section className="md-grid" aria-labelledby={`new-row-group-${index + 1}`}>
+      <h3 id={`new-row-group-${index + 1}`} className="md-cell md-cell--12">Fill Out Account Form</h3>
+      <TextField
+        id={`account-first-name-${index}`}
+        name={`name-${index}`}
+        label="First Name"
+        defaultValue="Magic"
+        placeholder="Ice Cream"
+        onChange={handleFormChange}
+        className="md-cell md-cell--4"
+      />
+      <TextField
+        id={`account-last-name-${index}`}
+        name={`name-${index}`}
+        label="Last Name"
+        defaultValue="Roger"
+        placeholder="Ice Cream"
+        className="md-cell md-cell--4"
+      />
+      <TextField
+        id={`account-email-${index}`}
+        name={`name-${index}`}
+        label="Email"
+        defaultValue="test@gmail.com"
+        placeholder="Ice Cream"
+        className="md-cell md-cell--4"
+      />
+      <TextField
+        id={`account-phone-number-${index}`}
+        name={`name-${index}`}
+        label="Phone Number"
+        defaultValue="0947263621"
+        placeholder="Phone Number"
+        className="md-cell md-cell--4"
+      />
+      <SelectField
+        id={'account-type'}
+        name={'account-type'}
+        label="Role"
+        menuItems={TYPES}
+        itemLabel='name'
+        itemValue='name'
+        onChange={handleFormChange}
+        className="md-cell md-cell--4"
+      />
+      <SelectField
+        id={'account-status'}
+        name={'account-status'}
+        label="Account Status"
+        menuItems={STATUS}
+        itemLabel='name'
+        itemValue='name'
+        onChange={handleFormChange}
+        className="md-cell md-cell--4"
+      />
+      <TextField
+        id={`account-password-${index}`}
+        name={`fat-${index}`}
+        type="password"
+        label='Password'
+        defaultValue={3}
+        placeholder="3"
+        className="md-cell md-cell--4"
+      />
+      <TextField
+        id={`account-re-password-${index}`}
+        name={`fat-${index}`}
+        type="password"
+        label='Password'
+        defaultValue={3}
+        placeholder="3"
+        className="md-cell md-cell--4"
+      />
+      <div className="md-cell md-cell--4"></div>
+      <div className="md-cell md-cell--12">
+        <Divider />
+      </div>
+      <div className="md-cell md-cell--4">
+        <Button raised
+                primary
+                label='Save'
+                children={<FontIcon>save</FontIcon>}/>
+        {' '}
+        <Button style={{marginLeft: '10px'}}
+                raised
+                secondary
+                label='Cancel'
+                children={<FontIcon>clear</FontIcon>}/>
+      </div>
+      <div className="md-cell md-cell--4"></div>
+      <div className="md-cell md-cell--4"></div>
+    </section>
+  </Card>
 );
 
 CRMForm.propTypes = {

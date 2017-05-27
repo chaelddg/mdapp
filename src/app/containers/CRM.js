@@ -39,6 +39,9 @@ class CRM extends PureComponent {
     this.handleColumnSort = this.handleColumnSort.bind(this);
     this.handleSearch     = this.handleSearch.bind(this);
 
+    // Dialog Form Handlers
+    this.handleFormChange     = this.handleFormChange.bind(this);
+
     this.closeDialogButton = <Button icon
                                      onClick={this.handleOpenDialog}
                                      tooltipLabel="Close Dialog">close</Button>;
@@ -109,6 +112,10 @@ class CRM extends PureComponent {
     });
   }
 
+  handleFormChange(data, ctx, d) {
+    console.log('@@ data', data, ctx);
+  }
+
   searchThrottle(search) {
     const { sort, key } = this.state.sortState;
     this.props.actions.getAccountList(10, 0, search, sort, key);
@@ -154,6 +161,7 @@ class CRM extends PureComponent {
           count={count}
         />
         <Dialog
+          dialogId="account-dialog"
           visible={openDialog}
           handleCloseDialog={this.handleOpenDialog}
         >
@@ -164,7 +172,9 @@ class CRM extends PureComponent {
               colored
               actions={this.closeDialogButton}
             />
-            <CRMForm index={1} />
+            <CRMForm
+              handleFormChange={this.handleFormChange}
+              index={1} />
           </div>
 
         </Dialog>
