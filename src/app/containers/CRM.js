@@ -7,20 +7,22 @@ import _ from 'lodash';
 
 import Button from 'react-md/lib/Buttons/Button';
 import Toolbar from 'react-md/lib/Toolbars';
-
-import * as accountActions from '../redux/actions/accountActions';
+import Snackbar from 'react-md/lib/Snackbars';
 
 import DataTable from '../components/DataTable';
 import ToolBar from '../components/ToolBar';
 import Dialog from '../components/Dialog';
 import CRMForm from '../components/CRMForm';
 
+import * as accountActions from '../redux/actions/accountActions';
+import validateInput from '../validations/account';
 
 class CRM extends PureComponent {
   constructor (props) {
     super(props);
 
     this.state = {
+      toasts: [],
       openDialog: false,
       page: 1,
       rowsPerPage: 10,
@@ -29,21 +31,40 @@ class CRM extends PureComponent {
         key: 'last_name',
         sort: 'asc',
         sortable: true
-      }
+      },
+      account: {
+        email: "",
+        first_name: "",
+        last_name: "",
+        password: "",
+        phone_number: "",
+        password2: "",
+        account_role: "",
+        account_status: ""
+      },
+      errors: {}
     };
 
-    this.searchThrottle = _.debounce(this.searchThrottle, 800);
+    this.saveThrottle      = _.debounce(this.saveThrottle, 800);
+    this.searchThrottle    = _.debounce(this.searchThrottle, 800);
 
-    this.handleOpenDialog = this.handleOpenDialog.bind(this);
-    this.handlePagination = this.handlePagination.bind(this);
-    this.handleColumnSort = this.handleColumnSort.bind(this);
-    this.handleSearch     = this.handleSearch.bind(this);
+    this.handleOpenDialog  = this.handleOpenDialog.bind(this);
+    this.handleCloseDialog = this.handleCloseDialog.bind(this);
+    this.handlePagination  = this.handlePagination.bind(this);
+    this.handleColumnSort  = this.handleColumnSort.bind(this);
+    this.handleSearch      = this.handleSearch.bind(this);
+    this.handleGridRequest = this.handleGridRequest.bind(this);
 
     // Dialog Form Handlers
-    this.handleFormChange     = this.handleFormChange.bind(this);
+    this.handleFormChange  = this.handleFormChange.bind(this);
+    this.handleSave        = this.handleSave.bind(this);
+
+    // Toasts Handlers
+    this.addToast          = this.addToast.bind(this);
+    this.removeToast       = this.removeToast.bind(this);
 
     this.closeDialogButton = <Button icon
-                                     onClick={this.handleOpenDialog}
+                                     onClick={this.handleCloseDialog}
                                      tooltipLabel="Close Dialog">close</Button>;
 
     this.tableActions = [
@@ -61,19 +82,91 @@ class CRM extends PureComponent {
         class: 'button-icon--success material-icons'
       }
     ];
+
+    this.header = [
+      { title: 'Last Name',    key: 'last_name',     sort: 'asc', sortable: true  },
+      { title: 'First Name',   key: 'first_name',    sort: 'asc', sortable: true  },
+      { title: 'Email',        key: 'email',         sort: 'asc', sortable: true  },
+      { title: 'Role',         key: 'account_role',  sort: 'asc', sortable: false  },
+      { title: 'Status',       key: 'account_status',sort: 'asc', sortable: false  },
+      { title: 'Phone Number', key: 'phone_number',              sortable: false },
+      {
+        title: 'Actions',
+        key: '',
+        type: 'button',
+        obj: this.tableActions,
+        sortable: false
+      }
+    ];
   }
 
   componentWillMount() {
+    this.handleGridRequest();
+  }
+
+  componentWillUnmount() {
+    this.saveThrottle.cancel(this, this.saveThrottle);
+    this.searchThrottle.cancel(this, this.searchThrottle);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { message } = nextProps;
+
+    if (message && message.success) {
+      this.handleCloseDialog();
+      this.addToast(message.message);
+      this.handleGridRequest();
+    }
+  }
+
+  handleGridRequest() {
     this.props.actions.clearAccountList();
     this.props.actions.getAccountList(10, 0, '', 'asc', 'last_name');
   }
 
-  componentWillUnmount() {
-    this.searchThrottle.cancel(this, this.searchThrottle);
+  addToast(message) {
+    const toasts = this.state.toasts.slice();
+    toasts.push({ text: message });
+    this.setState({ toasts });
+  }
+
+  removeToast() {
+    const [, ...toasts] = this.state.toasts;
+    this.setState({ toasts });
+  }
+
+  saveThrottle() {
+    let newState = Object.assign({}, this.state.account);
+    delete newState.password2;
+    this.props.actions.createUserAccount(newState);
+  }
+
+  isValid() {
+    const { isValid, errors } = validateInput(this.state.account);
+    this.setState({ errors });
+    return isValid
   }
 
   handleOpenDialog() {
+    this.props.actions.clearCreateAccountMessage();
     this.setState({
+      openDialog: !this.state.openDialog
+    });
+  }
+
+  handleCloseDialog() {
+    this.setState({
+      account: {
+        email: "",
+        first_name: "",
+        last_name: "",
+        password: "",
+        phone_number: "",
+        password2: "",
+        account_role: "",
+        account_status: ""
+      },
+      errors: {},
       openDialog: !this.state.openDialog
     });
   }
@@ -112,8 +205,16 @@ class CRM extends PureComponent {
     });
   }
 
-  handleFormChange(data, ctx, d) {
-    console.log('@@ data', data, ctx);
+  handleFormChange(key, value) {
+    let data = Object.assign({}, this.state.account);
+    data[key] = value;
+    this.setState({ account: data });
+  }
+
+  handleSave() {
+    if (this.isValid()) {
+      this.saveThrottle();
+    }
   }
 
   searchThrottle(search) {
@@ -122,25 +223,16 @@ class CRM extends PureComponent {
   }
 
   render() {
-    const { openDialog, page, rowsPerPage, search } = this.state;
-    const { accounts, fetching, count } = this.props;
-    const header = [
-      { title: 'Last Name',    key: 'last_name',    sort: 'asc', sortable: true  },
-      { title: 'First Name',   key: 'first_name',   sort: 'asc', sortable: true  },
-      { title: 'Email',        key: 'email',        sort: 'asc', sortable: true  },
-      { title: 'Gender',       key: 'sex',          sort: 'asc', sortable: true  },
-      { title: 'Phone Number', key: 'phone_number',              sortable: false },
-      {
-        title: 'Actions',
-        key: '',
-        type: 'button',
-        obj: this.tableActions,
-        sortable: false
-      }
-    ];
+    const { openDialog, page, rowsPerPage, search, account, errors, toasts } = this.state;
+    const { accounts, fetching, count, message } = this.props;
 
     return (
       <div style={{ padding: "1em" }}>
+        <Snackbar
+          toasts={toasts}
+          autohideTimeout={3000}
+          onDismiss={this.removeToast}
+        />
         <ToolBar
           title={"MDapp / CRM"}
           handleOpenDialog={this.handleOpenDialog} />
@@ -149,7 +241,7 @@ class CRM extends PureComponent {
           tableId="accounts-table"
           hasActions={true}
           cardHeader={'Accounts'}
-          header={header}
+          header={this.header}
           data={accounts}
           search={search}
           isFetching={fetching}
@@ -163,7 +255,7 @@ class CRM extends PureComponent {
         <Dialog
           dialogId="account-dialog"
           visible={openDialog}
-          handleCloseDialog={this.handleOpenDialog}
+          handleCloseDialog={this.handleCloseDialog}
         >
           <div>
             <Toolbar
@@ -173,6 +265,12 @@ class CRM extends PureComponent {
               actions={this.closeDialogButton}
             />
             <CRMForm
+              data={account}
+              errors={errors}
+              fetching={fetching}
+              message={message}
+              handleSave={this.handleSave}
+              handleCancel={this.handleCloseDialog}
               handleFormChange={this.handleFormChange}
               index={1} />
           </div>
@@ -183,6 +281,10 @@ class CRM extends PureComponent {
   }
 }
 
+CRM.contextTypes = {
+  router: PropTypes.object.isRequired
+};
+
 CRM.propTypes = {
   user: PropTypes.object.isRequired
 };
@@ -192,6 +294,7 @@ function mapStateToProps(state, ownProps) {
     fetching: state.ajaxCallsInProgress > 0,
     accounts: state.accounts.data ? state.accounts.data : [],
     count: state.accounts.count ? state.accounts.count : 0,
+    message: state.accounts.message,
     user: state.user
   };
 }

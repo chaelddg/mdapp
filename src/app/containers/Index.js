@@ -31,14 +31,7 @@ class Index extends PureComponent {
         last_name: ""
       }
 		};
-		this._setPage = this._setPage.bind(this);
 		this._handleUserChange = this._handleUserChange.bind(this);
-		this._navItems = this.props.navItems.map(item => {
-			if (!item.divider) {
-				item.onClick = () => this._setPage(item.key, item.href);
-			}
-			return item;
-		});
 
 	}
 
@@ -62,18 +55,10 @@ class Index extends PureComponent {
 		if (this._timeout) {
 			clearTimeout(this._timeout);
 		}
-	}
-
-	_setPage(key, href) {
-		this._navItems = this._navItems.map(item => {
-			if (!item.divider) {
-				item.active = item.key === key;
-			}
-			return item;
-		});
-
-		this.setState({ key });
-		this.context.router.history.push(href)
+		this.setState({
+      key: "",
+      user: {}
+    })
 	}
 
   _handleUserChange() {
@@ -85,7 +70,6 @@ class Index extends PureComponent {
 		const { dialog, user } = this.state;
 		const { navItems } = this.props;
 		const _navItems = navItems;
-
 		let drawerHeaderChildren = [
 			<Avatar
 				key={avatarSrc}

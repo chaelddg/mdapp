@@ -32,7 +32,7 @@ class Dashboard extends PureComponent {
       }
     };
 
-    this.searchThrottle = _.debounce(this.searchThrottle, 800);
+    this.searchDebouce    = _.debounce(this.searchDebouce, 800);
 
     this.handleOpenDialog = this.handleOpenDialog.bind(this);
     this.handlePagination = this.handlePagination.bind(this);
@@ -66,7 +66,7 @@ class Dashboard extends PureComponent {
   }
 
   componentWillUnmount() {
-    this.searchThrottle.cancel(this, this.searchThrottle);
+    this.searchDebouce.cancel(this, this.searchDebouce);
   }
 
   handleOpenDialog() {
@@ -105,11 +105,11 @@ class Dashboard extends PureComponent {
 
   handleSearch(search) {
     this.setState({search}, () => {
-      this.searchThrottle(search);
+      this.searchDebouce(search);
     });
   }
 
-  searchThrottle(search) {
+  searchDebouce(search) {
     const { sort, key } = this.state.sortState;
     this.props.actions.getPatientList(10, 0, search, sort, key);
   }

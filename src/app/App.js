@@ -5,6 +5,8 @@ import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import FontIcon from 'react-md/lib/FontIcons';
 
+import Login from './containers/Login';
+
 import localdb from '../helpers/localdb';
 import Index from './containers/Index';
 
@@ -17,13 +19,13 @@ class App extends PureComponent {
 
 		this._setPage = this._setPage.bind(this);
 		this.state = {
-			_navItems: []
+			_navItems: [],
+      key: ""
 		};
 	}
 
 	componentWillMount() {
 		const { user } = this.props;
-
 		if (!user.id) {
 			let id = localdb.getItem('id');
 			if (id) {
@@ -37,11 +39,16 @@ class App extends PureComponent {
 		}
 	}
 
-	componentWillReceiveProps(nextProps) {
-		const { _navItems } = this.state;
-		let pathname = this.props.location.pathname;
+	componentWillUnmount() {
+	  this.setState({
+      _navItems: [],
+      key: ""
+    });
+  }
 
-		if (_navItems.length === 0 && (nextProps.user && nextProps.user.menu)) {
+	componentWillReceiveProps(nextProps) {
+		let pathname = nextProps.location.pathname;
+		if (nextProps.user && nextProps.user.menu) {
 			// CHECKING IF USER IS NOT ALLOWED TO NAVIGATE ROUTE
 			let foundObjForKey = nextProps.user.menu.find((item) => item.path === pathname);
 			if (!foundObjForKey) {
@@ -49,7 +56,7 @@ class App extends PureComponent {
 			} else {
 				let navItems = [];
 				nextProps.user.menu.map((item, index) => {
-					let _temp = {};
+					let _temp = Object.assign({});
 					if (!item.divider) {
 						_temp.active = (pathname === '/dashboard' && item.key === 'toys' ? item.active : (pathname.search(item.key) !== -1 ? true : false));
 						_temp.key = item.key;
@@ -62,7 +69,7 @@ class App extends PureComponent {
 					}
 					return navItems.push(_temp);
 				});
-				this.setState({ _navItems: navItems })
+				this.setState({ _navItems: [...navItems] })
 			}
 		}
 	}
@@ -71,18 +78,21 @@ class App extends PureComponent {
 		const { _navItems } = this.state;
 		let navItems = _navItems.map(item => {
 			if (!item.divider) {
-				item.active = item.key === key;
+				item.active = item.key === key ? true : false;
 			}
 			return item;
 		});
 
-		this.setState({ _navItems: navItems,  key });
-		this.context.router.history.push(href);
+		this.setState({ _navItems: [...navItems],  key }, () => {
+      this.context.router.history.push(href);
+    });
 	}
 
 	render() {
 		const { _navItems } = this.state;
-
+    if (!localdb.getItem('id')) {
+      return <Login/>;
+    }
 		return (
 			<Index navItems={_navItems} />
 		);

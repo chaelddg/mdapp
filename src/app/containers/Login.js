@@ -11,6 +11,7 @@ import SelectionControl from 'react-md/lib/SelectionControls/SelectionControl';
 
 import * as authActions from '../redux/actions/authActions';
 import validateInput from '../validations/authentication';
+import localdb from '../../helpers/localdb';
 
 class Login extends PureComponent {
 
@@ -28,9 +29,12 @@ class Login extends PureComponent {
 		this.handleLogin = this.handleLogin.bind(this);
 	}
 
+	componentWillMount() {
+    localdb.clear();
+  }
+
 	componentWillReceiveProps(nextProps) {
-		const { user } = nextProps;
-		if (user && user.id) {
+		if (localdb.getItem('id')) {
 			this.context.router.history.push('/dashboard');
 		}
 	}
@@ -57,7 +61,6 @@ class Login extends PureComponent {
 	render() {
 		const { credentials, errors } = this.state;
 		const { authMessage } = this.props;
-
 		return (
 			<div className="login_page">
 				<div className="md-grid md-grid--center">
@@ -70,7 +73,7 @@ class Login extends PureComponent {
 								</span>
 							</div>
 							<CardText>
-								<h3>{authMessage}</h3>
+								<h3>{!authMessage.success ? authMessage.message : ""}</h3>
 								<div className='screenLogin__formWrap'>
 									<TextField
 										leftIcon={<FontIcon>person</FontIcon>}

@@ -7,7 +7,7 @@ import TextField from 'react-md/lib/TextFields';
 import FontIcon from 'react-md/lib/FontIcons';
 import Button from 'react-md/lib/Buttons/Button';
 
-const TYPES = [
+const ROLES = [
   { name: 'Doctor', value: 'doctor' },
   { name: 'Nurse', value: 'nurse' },
   { name: 'Receptionist', value: 'receptionist' },
@@ -19,51 +19,77 @@ const STATUS = [
   { name: 'In-active', value: 'in_active' }
 ];
 
-const CRMForm = ({ index, handleFormChange }) => (
+const CRMForm = (
+  {
+    data,
+    index,
+    handleFormChange,
+    errors,
+    fetching,
+    handleSave,
+    message,
+    handleCancel
+  }) => (
   <Card className="override-dialog-form-margin">
     <section className="md-grid" aria-labelledby={`new-row-group-${index + 1}`}>
-      <h3 id={`new-row-group-${index + 1}`} className="md-cell md-cell--12">Fill Out Account Form</h3>
+      <h3 id={`new-row-group-${index + 1}`} className="md-cell md-cell--12">
+        Fill Out Account Form
+      </h3>
       <TextField
         id={`account-first-name-${index}`}
         name={`name-${index}`}
         label="First Name"
-        defaultValue="Magic"
-        placeholder="Ice Cream"
-        onChange={handleFormChange}
+        value={data.first_name}
+        placeholder="First Name"
+        onChange={handleFormChange.bind(this, 'first_name')}
+        error={errors.first_name ? true : false}
+        errorText={errors.first_name}
         className="md-cell md-cell--4"
       />
       <TextField
         id={`account-last-name-${index}`}
         name={`name-${index}`}
         label="Last Name"
-        defaultValue="Roger"
-        placeholder="Ice Cream"
+        value={data.last_name}
+        placeholder="Last Name"
+        onChange={handleFormChange.bind(this, 'last_name')}
+        error={errors.last_name ? true : false}
+        errorText={errors.last_name}
         className="md-cell md-cell--4"
       />
       <TextField
-        id={`account-email-${index}`}
+        id={`email-${index}`}
         name={`name-${index}`}
         label="Email"
-        defaultValue="test@gmail.com"
-        placeholder="Ice Cream"
+        value={data.email}
+        placeholder="Email"
+        onChange={handleFormChange.bind(this, 'email')}
+        error={errors.email ? true : false}
+        errorText={errors.email}
         className="md-cell md-cell--4"
       />
       <TextField
-        id={`account-phone-number-${index}`}
-        name={`name-${index}`}
+        id={`phone-${index}`}
+        name={`phone-${index}`}
         label="Phone Number"
-        defaultValue="0947263621"
+        value={data.phone_number}
         placeholder="Phone Number"
+        onChange={handleFormChange.bind(this, 'phone_number')}
+        error={errors.phone_number ? true : false}
+        errorText={errors.phone_number}
         className="md-cell md-cell--4"
       />
       <SelectField
-        id={'account-type'}
-        name={'account-type'}
+        id={'account-role'}
+        name={'account-role'}
         label="Role"
-        menuItems={TYPES}
+        menuItems={ROLES}
         itemLabel='name'
-        itemValue='name'
-        onChange={handleFormChange}
+        itemValue='value'
+        value={data.account_role}
+        onChange={handleFormChange.bind(this, 'account_role')}
+        error={errors.account_role ? true : false}
+        errorText={errors.account_role}
         className="md-cell md-cell--4"
       />
       <SelectField
@@ -72,26 +98,35 @@ const CRMForm = ({ index, handleFormChange }) => (
         label="Account Status"
         menuItems={STATUS}
         itemLabel='name'
-        itemValue='name'
-        onChange={handleFormChange}
+        itemValue='value'
+        value={data.account_status}
+        onChange={handleFormChange.bind(this, 'account_status')}
+        error={errors.account_status ? true : false}
+        errorText={errors.account_status}
         className="md-cell md-cell--4"
       />
       <TextField
         id={`account-password-${index}`}
-        name={`fat-${index}`}
+        name={`account-password-${index}`}
         type="password"
         label='Password'
-        defaultValue={3}
-        placeholder="3"
+        value={data.password}
+        placeholder="**********"
+        onChange={handleFormChange.bind(this, 'password')}
+        error={errors.password ? true : false}
+        errorText={errors.password}
         className="md-cell md-cell--4"
       />
       <TextField
-        id={`account-re-password-${index}`}
-        name={`fat-${index}`}
+        id={`account-password-2-${index}`}
+        name={`account-password-2-${index}`}
         type="password"
-        label='Password'
-        defaultValue={3}
-        placeholder="3"
+        label='Confirm Password'
+        value={data.password2}
+        placeholder="**********"
+        onChange={handleFormChange.bind(this, 'password2')}
+        error={errors.password2 ? true : false}
+        errorText={errors.password2}
         className="md-cell md-cell--4"
       />
       <div className="md-cell md-cell--4"></div>
@@ -99,18 +134,33 @@ const CRMForm = ({ index, handleFormChange }) => (
         <Divider />
       </div>
       <div className="md-cell md-cell--4">
-        <Button raised
-                primary
-                label='Save'
-                children={<FontIcon>save</FontIcon>}/>
+        {
+          fetching ?
+            <Button raised
+                    primary
+                    disabled
+                    label='Saving ...'
+                    onClick={handleSave}
+                    children={<FontIcon>save</FontIcon>}/>
+            :
+            <Button raised
+                    primary
+                    label='Save'
+                    onClick={handleSave}
+                    children={<FontIcon>save</FontIcon>}/>
+        }
+
         {' '}
         <Button style={{marginLeft: '10px'}}
                 raised
                 secondary
                 label='Cancel'
+                onClick={handleCancel}
                 children={<FontIcon>clear</FontIcon>}/>
       </div>
-      <div className="md-cell md-cell--4"></div>
+      <div className="md-cell md-cell--4">
+        <h4 style={{textAlign: "center", color: "#F44336"}}>{!message.success ? message.message : ""}</h4>
+      </div>
       <div className="md-cell md-cell--4"></div>
     </section>
   </Card>

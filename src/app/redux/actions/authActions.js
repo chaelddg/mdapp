@@ -4,10 +4,10 @@ import * as types from './actionTypes';
 import { beginAjaxCall, ajaxCallError } from './ajaxStatusActions';
 import { getUserDetails } from './userActions';
 
-export function setAuthMessage (message) {
+export function setAuthMessage (payload) {
 	return {
 		type: types.AUTHENTICATE_LOGIN_FAILED,
-		message
+		payload
 	}
 }
 
@@ -24,13 +24,17 @@ export function authenticateLogin(credentials) {
 			.then(authResponse => {
 				dispatch({type: types.AUTHENTICATE_LOGIN_SUCCESS});
 				if (authResponse.data.success) {
+				  console.log('@@@ success', authResponse);
 					localdb.clear();
 					localdb.setItem('token', authResponse.data.token);
 					localdb.setItem('id', authResponse.data.id);
 					dispatch(clearAuthMessage());
 					dispatch(getUserDetails(authResponse.data.id));
 				} else {
-					dispatch(setAuthMessage(authResponse.data.message));
+					dispatch(setAuthMessage({
+            message: authResponse.data.message,
+            success: authResponse.data.success
+          }));
 				}
 			})
 			.catch(authError => {
