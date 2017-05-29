@@ -24,6 +24,7 @@ class CRM extends PureComponent {
     this.state = {
       toasts: [],
       openDialog: false,
+      openDeleteDialog: false,
       page: 1,
       rowsPerPage: 10,
       search: '',
@@ -45,23 +46,24 @@ class CRM extends PureComponent {
       errors: {}
     };
 
-    this.saveThrottle      = _.debounce(this.saveThrottle, 800);
-    this.searchThrottle    = _.debounce(this.searchThrottle, 800);
+    this.saveThrottle            = _.debounce(this.saveThrottle, 800);
+    this.searchThrottle          = _.debounce(this.searchThrottle, 800);
 
-    this.handleOpenDialog  = this.handleOpenDialog.bind(this);
-    this.handleCloseDialog = this.handleCloseDialog.bind(this);
-    this.handlePagination  = this.handlePagination.bind(this);
-    this.handleColumnSort  = this.handleColumnSort.bind(this);
-    this.handleSearch      = this.handleSearch.bind(this);
-    this.handleGridRequest = this.handleGridRequest.bind(this);
+    this.handleOpenDialog        = this.handleOpenDialog.bind(this);
+    this.handleOpenDeleteDialog  = this.handleOpenDeleteDialog.bind(this);
+    this.handleCloseDialog       = this.handleCloseDialog.bind(this);
+    this.handlePagination        = this.handlePagination.bind(this);
+    this.handleColumnSort        = this.handleColumnSort.bind(this);
+    this.handleSearch            = this.handleSearch.bind(this);
+    this.handleGridRequest       = this.handleGridRequest.bind(this);
 
     // Dialog Form Handlers
-    this.handleFormChange  = this.handleFormChange.bind(this);
-    this.handleSave        = this.handleSave.bind(this);
+    this.handleFormChange        = this.handleFormChange.bind(this);
+    this.handleSave              = this.handleSave.bind(this);
 
     // Toasts Handlers
-    this.addToast          = this.addToast.bind(this);
-    this.removeToast       = this.removeToast.bind(this);
+    this.addToast                = this.addToast.bind(this);
+    this.removeToast             = this.removeToast.bind(this);
 
     this.closeDialogButton = <Button icon
                                      onClick={this.handleCloseDialog}
@@ -78,7 +80,7 @@ class CRM extends PureComponent {
       {
         icon: 'delete',
         text: 'Remove',
-        handler: this.handleOpenDialog.bind(this),
+        handler: this.handleOpenDeleteDialog.bind(this),
         class: 'button-icon--success material-icons'
       }
     ];
@@ -154,6 +156,12 @@ class CRM extends PureComponent {
     });
   }
 
+  handleOpenDeleteDialog() {
+    this.setState({
+      openDeleteDialog: !this.state.openDeleteDialog
+    });
+  }
+
   handleCloseDialog() {
     this.setState({
       account: {
@@ -223,7 +231,7 @@ class CRM extends PureComponent {
   }
 
   render() {
-    const { openDialog, page, rowsPerPage, search, account, errors, toasts } = this.state;
+    const { openDialog, openDeleteDialog, page, rowsPerPage, search, account, errors, toasts } = this.state;
     const { accounts, fetching, count, message } = this.props;
 
     return (
@@ -253,7 +261,28 @@ class CRM extends PureComponent {
           count={count}
         />
         <Dialog
+          dialogId="account-delete-dialog"
+          fullPage={false}
+          visible={openDeleteDialog}
+          onHide={this.handleOpenDeleteDialog}
+          actions={[{
+            onClick: this.handleOpenDeleteDialog,
+            primary: true,
+            label: 'Turn on speed boost',
+          }, {
+            onClick: this.handleOpenDeleteDialog,
+            primary: true,
+            label: 'No thanks',
+          }]}
+        >
+          <p id="speedBoostDescription" className="md-color--secondary-text">
+            Let Google help apps determine location. This means sending anonymouse
+            location data to Google, even when no apps are running.
+          </p>
+        </Dialog>
+        <Dialog
           dialogId="account-dialog"
+          fullPage={true}
           visible={openDialog}
           handleCloseDialog={this.handleCloseDialog}
         >

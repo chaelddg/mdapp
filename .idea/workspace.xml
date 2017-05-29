@@ -7,17 +7,9 @@
   <component name="ChangeListManager">
     <list default="true" id="4d7875ca-9d62-4baf-b8e2-c5388f5babb4" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/App.js" afterPath="$PROJECT_DIR$/src/app/App.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/components/CRMForm.js" afterPath="$PROJECT_DIR$/src/app/components/CRMForm.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/components/Dialog.js" afterPath="$PROJECT_DIR$/src/app/components/Dialog.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/containers/CRM.js" afterPath="$PROJECT_DIR$/src/app/containers/CRM.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/containers/Dashboard.js" afterPath="$PROJECT_DIR$/src/app/containers/Dashboard.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/containers/Index.js" afterPath="$PROJECT_DIR$/src/app/containers/Index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/containers/Login.js" afterPath="$PROJECT_DIR$/src/app/containers/Login.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/redux/actions/accountActions.js" afterPath="$PROJECT_DIR$/src/app/redux/actions/accountActions.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/redux/actions/actionTypes.js" afterPath="$PROJECT_DIR$/src/app/redux/actions/actionTypes.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/redux/actions/authActions.js" afterPath="$PROJECT_DIR$/src/app/redux/actions/authActions.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/redux/reducers/accountReducer.js" afterPath="$PROJECT_DIR$/src/app/redux/reducers/accountReducer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/redux/reducers/authReducer.js" afterPath="$PROJECT_DIR$/src/app/redux/reducers/authReducer.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -122,11 +114,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="authActions.js" pinned="false" current-in-tab="false">
+          <file leaf-file-name="authActions.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/app/redux/actions/authActions.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="595">
-                  <caret line="35" column="46" lean-forward="false" selection-start-line="35" selection-start-column="46" selection-end-line="35" selection-end-column="46" />
+                <state relative-caret-position="238">
+                  <caret line="14" column="10" lean-forward="true" selection-start-line="14" selection-start-column="10" selection-end-line="14" selection-end-column="10" />
                   <folding>
                     <element signature="e#0#45#0" expanded="true" />
                   </folding>
@@ -134,11 +126,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="request.js" pinned="false" current-in-tab="true">
+          <file leaf-file-name="request.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/helpers/request.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="17">
-                  <caret line="1" column="44" lean-forward="true" selection-start-line="1" selection-start-column="44" selection-end-line="1" selection-end-column="44" />
+                <state relative-caret-position="68">
+                  <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
@@ -178,11 +170,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="Dialog.js" pinned="false" current-in-tab="false">
+          <file leaf-file-name="Dialog.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/app/components/Dialog.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="289">
-                  <caret line="18" column="27" lean-forward="false" selection-start-line="18" selection-start-column="27" selection-end-line="18" selection-end-column="27" />
+                <state relative-caret-position="187">
+                  <caret line="11" column="32" lean-forward="false" selection-start-line="11" selection-start-column="32" selection-end-line="11" selection-end-column="32" />
                   <folding>
                     <element signature="e#0#27#0" expanded="true" />
                   </folding>
@@ -193,7 +185,7 @@
           <file leaf-file-name="InboxInputs.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/app/components/InboxInputs.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="272">
+                <state relative-caret-position="306">
                   <caret line="18" column="25" lean-forward="false" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="25" />
                   <folding>
                     <element signature="e#0#26#0" expanded="true" />
@@ -226,15 +218,14 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="CRM.js" pinned="false" current-in-tab="true">
+          <file leaf-file-name="CRM.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/app/containers/CRM.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="523">
-                  <caret line="174" column="8" lean-forward="false" selection-start-line="174" selection-start-column="8" selection-end-line="174" selection-end-column="8" />
+                <state relative-caret-position="391">
+                  <caret line="275" column="13" lean-forward="true" selection-start-line="275" selection-start-column="13" selection-end-line="275" selection-end-column="13" />
                   <folding>
                     <element signature="e#0#45#0" expanded="true" />
                     <element signature="n#!!block;n#isValid#0;n#CRM#0" expanded="false" />
-                    <element signature="n#!!block;n#handleOpenDialog#0;n#CRM#0" expanded="false" />
                     <element signature="n#!!block;n#handleCloseDialog#0;n#CRM#0" expanded="false" />
                     <element signature="n#!!block;n#handleColumnSort#0;n#CRM#0" expanded="false" />
                     <element signature="n#!!block;n#handleSearch#0;n#CRM#0" expanded="false" />
@@ -341,7 +332,6 @@
         <option value="$PROJECT_DIR$/src/sass/layout.scss" />
         <option value="$PROJECT_DIR$/src/sass/base.scss" />
         <option value="$PROJECT_DIR$/src/app/components/PatientForm.js" />
-        <option value="$PROJECT_DIR$/src/app/components/Dialog.js" />
         <option value="$PROJECT_DIR$/src/app/validations/account.js" />
         <option value="$PROJECT_DIR$/src/app/redux/actions/actionTypes.js" />
         <option value="$PROJECT_DIR$/src/app/redux/actions/userActions.js" />
@@ -349,13 +339,14 @@
         <option value="$PROJECT_DIR$/src/app/redux/reducers/accountReducer.js" />
         <option value="$PROJECT_DIR$/src/app/components/CRMForm.js" />
         <option value="$PROJECT_DIR$/src/app/redux/actions/accountActions.js" />
-        <option value="$PROJECT_DIR$/src/app/containers/CRM.js" />
         <option value="$PROJECT_DIR$/src/app/redux/reducers/authReducer.js" />
         <option value="$PROJECT_DIR$/src/app/containers/Login.js" />
         <option value="$PROJECT_DIR$/src/app/App.js" />
         <option value="$PROJECT_DIR$/src/app/containers/Index.js" />
-        <option value="$PROJECT_DIR$/src/app/redux/actions/authActions.js" />
         <option value="$PROJECT_DIR$/src/helpers/request.js" />
+        <option value="$PROJECT_DIR$/src/app/redux/actions/authActions.js" />
+        <option value="$PROJECT_DIR$/src/app/containers/CRM.js" />
+        <option value="$PROJECT_DIR$/src/app/components/Dialog.js" />
       </list>
     </option>
   </component>
@@ -739,12 +730,12 @@
       <workItem from="1496016599528" duration="517000" />
       <workItem from="1496017140383" duration="291000" />
       <workItem from="1496017457530" duration="7338000" />
-      <workItem from="1496026838203" duration="15079000" />
+      <workItem from="1496026838203" duration="18112000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="209247000" />
+    <option name="totallyTimeSpent" value="212280000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -759,7 +750,7 @@
     <frame x="-1" y="0" width="1922" height="1053" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24986821" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24986821" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32939914" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -881,14 +872,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/redux/store/store.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="24" lean-forward="false" selection-start-line="0" selection-start-column="24" selection-end-line="0" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/redux/actions/test.json" />
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
@@ -990,26 +973,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/components/Dialog.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="18" column="27" lean-forward="false" selection-start-line="18" selection-start-column="27" selection-end-line="18" selection-end-column="27" />
-          <folding>
-            <element signature="e#0#27#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/components/InboxInputs.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="18" column="25" lean-forward="false" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="25" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/components/PatientForm.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
@@ -1079,34 +1042,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/components/CRMForm.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="44" lean-forward="false" selection-start-line="6" selection-start-column="44" selection-end-line="6" selection-end-column="44" />
-          <folding>
-            <marker date="1496027907325" expanded="true" signature="1062:1074" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/containers/CRM.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="523">
-          <caret line="174" column="8" lean-forward="false" selection-start-line="174" selection-start-column="8" selection-end-line="174" selection-end-column="8" />
-          <folding>
-            <element signature="e#0#45#0" expanded="true" />
-            <element signature="n#!!block;n#isValid#0;n#CRM#0" expanded="false" />
-            <element signature="n#!!block;n#handleOpenDialog#0;n#CRM#0" expanded="false" />
-            <element signature="n#!!block;n#handleCloseDialog#0;n#CRM#0" expanded="false" />
-            <element signature="n#!!block;n#handleColumnSort#0;n#CRM#0" expanded="false" />
-            <element signature="n#!!block;n#handleSearch#0;n#CRM#0" expanded="false" />
-            <element signature="n#!!block;n#handleFormChange#0;n#CRM#0" expanded="false" />
-            <element signature="n#!!block;n#handleSave#0;n#CRM#0" expanded="false" />
-            <element signature="n#!!block;n#searchThrottle#0;n#CRM#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/redux/reducers/accountReducer.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
@@ -1168,21 +1103,76 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/helpers/request.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/redux/actions/authActions.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
-          <caret line="35" column="46" lean-forward="false" selection-start-line="35" selection-start-column="46" selection-end-line="35" selection-end-column="46" />
+        <state relative-caret-position="238">
+          <caret line="14" column="10" lean-forward="true" selection-start-line="14" selection-start-column="10" selection-end-line="14" selection-end-column="10" />
           <folding>
             <element signature="e#0#45#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/helpers/request.js">
+    <entry file="file://$PROJECT_DIR$/src/app/redux/store/store.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="44" lean-forward="true" selection-start-line="1" selection-start-column="44" selection-end-line="1" selection-end-column="44" />
+        <state relative-caret-position="0">
+          <caret line="0" column="24" lean-forward="false" selection-start-line="0" selection-start-column="24" selection-end-line="0" selection-end-column="24" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/components/InboxInputs.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="25" lean-forward="false" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="25" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/components/CRMForm.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="44" lean-forward="false" selection-start-line="6" selection-start-column="44" selection-end-line="6" selection-end-column="44" />
+          <folding>
+            <marker date="1496027907325" expanded="true" signature="1062:1074" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/containers/CRM.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="275" column="13" lean-forward="true" selection-start-line="275" selection-start-column="13" selection-end-line="275" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#45#0" expanded="true" />
+            <element signature="n#!!block;n#isValid#0;n#CRM#0" expanded="false" />
+            <element signature="n#!!block;n#handleCloseDialog#0;n#CRM#0" expanded="false" />
+            <element signature="n#!!block;n#handleColumnSort#0;n#CRM#0" expanded="false" />
+            <element signature="n#!!block;n#handleSearch#0;n#CRM#0" expanded="false" />
+            <element signature="n#!!block;n#handleFormChange#0;n#CRM#0" expanded="false" />
+            <element signature="n#!!block;n#handleSave#0;n#CRM#0" expanded="false" />
+            <element signature="n#!!block;n#searchThrottle#0;n#CRM#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/components/Dialog.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="32" lean-forward="false" selection-start-line="11" selection-start-column="32" selection-end-line="11" selection-end-column="32" />
+          <folding>
+            <element signature="e#0#27#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

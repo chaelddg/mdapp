@@ -24,7 +24,6 @@ export function authenticateLogin(credentials) {
 			.then(authResponse => {
 				dispatch({type: types.AUTHENTICATE_LOGIN_SUCCESS});
 				if (authResponse.data.success) {
-				  console.log('@@@ success', authResponse);
 					localdb.clear();
 					localdb.setItem('token', authResponse.data.token);
 					localdb.setItem('id', authResponse.data.id);
