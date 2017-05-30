@@ -1,7 +1,16 @@
 import React  from 'react';
 import Dialog from 'react-md/lib/Dialogs';
 
-const ReactDialog = ({ dialogId, visible, handleCloseDialog, children, fullPage, actions }) => {
+const ReactDialog =
+  ({
+   dialogId,
+   visible,
+   handleCloseDialog,
+   children,
+   fullPage,
+   actions,
+   dialogTitle
+}) => {
   return (
     <div>
       {
@@ -19,7 +28,8 @@ const ReactDialog = ({ dialogId, visible, handleCloseDialog, children, fullPage,
           :
           <Dialog
             id={dialogId}
-            title={dialogId}
+            dialogStyle={{ width: "30%" }}
+            title={dialogTitle}
             visible={visible}
             modal={true}
             actions={actions}

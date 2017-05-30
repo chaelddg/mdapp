@@ -23,6 +23,7 @@ class CRM extends PureComponent {
 
     this.state = {
       toasts: [],
+      dialogUser: {},
       openDialog: false,
       openDeleteDialog: false,
       page: 1,
@@ -49,9 +50,11 @@ class CRM extends PureComponent {
     this.saveThrottle            = _.debounce(this.saveThrottle, 800);
     this.searchThrottle          = _.debounce(this.searchThrottle, 800);
 
+    // Open/Close Dialog Handlers
     this.handleOpenDialog        = this.handleOpenDialog.bind(this);
     this.handleOpenDeleteDialog  = this.handleOpenDeleteDialog.bind(this);
     this.handleCloseDialog       = this.handleCloseDialog.bind(this);
+
     this.handlePagination        = this.handlePagination.bind(this);
     this.handleColumnSort        = this.handleColumnSort.bind(this);
     this.handleSearch            = this.handleSearch.bind(this);
@@ -59,6 +62,7 @@ class CRM extends PureComponent {
 
     // Dialog Form Handlers
     this.handleFormChange        = this.handleFormChange.bind(this);
+    this.handleDelete            = this.handleDelete.bind(this);
     this.handleSave              = this.handleSave.bind(this);
 
     // Toasts Handlers
@@ -156,10 +160,15 @@ class CRM extends PureComponent {
     });
   }
 
-  handleOpenDeleteDialog() {
+  handleOpenDeleteDialog(data, type, ctx) {
     this.setState({
+      dialogUser: data,
       openDeleteDialog: !this.state.openDeleteDialog
     });
+  }
+
+  handleDelete() {
+    console.log('@@ dialogUser', this.state.dialogUser);
   }
 
   handleCloseDialog() {
@@ -262,23 +271,24 @@ class CRM extends PureComponent {
         />
         <Dialog
           dialogId="account-delete-dialog"
+          dialogTitle="Delete Account"
           fullPage={false}
           visible={openDeleteDialog}
           onHide={this.handleOpenDeleteDialog}
           actions={[{
-            onClick: this.handleOpenDeleteDialog,
+            onClick: this.handleDelete,
             primary: true,
-            label: 'Turn on speed boost',
+            label: 'Continue',
           }, {
             onClick: this.handleOpenDeleteDialog,
             primary: true,
-            label: 'No thanks',
+            label: 'Cancel',
           }]}
         >
-          <p id="speedBoostDescription" className="md-color--secondary-text">
-            Let Google help apps determine location. This means sending anonymouse
-            location data to Google, even when no apps are running.
-          </p>
+          <h5 id="accountDeletionDescription" className="md-color--secondary-text">
+            Account will be deleted permanently. Would you like to proceed?
+          </h5>
+
         </Dialog>
         <Dialog
           dialogId="account-dialog"
