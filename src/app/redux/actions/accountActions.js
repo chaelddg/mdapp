@@ -3,7 +3,7 @@ import localdb from '../../../helpers/localdb';
 import * as types from './actionTypes';
 import { beginAjaxCall, ajaxCallError } from './ajaxStatusActions';
 
-export function setCreateAccountMessage (payload) {
+export function setAccountMessage (payload) {
   return {
     type: types.CREATE_USER_ACCOUNT_MESSAGE,
     payload
@@ -61,7 +61,7 @@ export function createUserAccount(credentials) {
     })
     .then(accountResponse => {
       dispatch({type: types.CREATE_USER_ACCOUNT_SUCCESS});
-      dispatch(setCreateAccountMessage({
+      dispatch(setAccountMessage({
         message: accountResponse.data.message,
         success: accountResponse.data.success
       }));
@@ -70,5 +70,28 @@ export function createUserAccount(credentials) {
       dispatch(ajaxCallError());
       throw(accountError);
     });
+  }
+}
+
+export function deleteUserAccount(id) {
+
+  return function (dispatch) {
+    dispatch(beginAjaxCall());
+    return axios.delete(`/account/delete/${id}`, {
+      headers: {
+        'Authorization': localdb.getItem('token')
+      }
+    })
+      .then(accountResponse => {
+        dispatch({type: types.CREATE_USER_ACCOUNT_SUCCESS});
+        dispatch(setAccountMessage({
+          message: accountResponse.data.message,
+          success: accountResponse.data.success
+        }));
+      })
+      .catch(accountError => {
+        dispatch(ajaxCallError());
+        throw(accountError);
+      });
   }
 }

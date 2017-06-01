@@ -159,7 +159,7 @@ const CRMForm = (
                 children={<FontIcon>clear</FontIcon>}/>
       </div>
       <div className="md-cell md-cell--4">
-        <h4 style={{textAlign: "center", color: "#F44336"}}>{!message.success ? message.message : ""}</h4>
+        <h4 style={{textAlign: "center", color: "#F44336"}}>{message && !message.success ? message.message : ""}</h4>
       </div>
       <div className="md-cell md-cell--4"></div>
     </section>

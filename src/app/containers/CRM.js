@@ -168,7 +168,8 @@ class CRM extends PureComponent {
   }
 
   handleDelete() {
-    console.log('@@ dialogUser', this.state.dialogUser);
+    const { id } = this.state.dialogUser;
+    this.props.actions.deleteUserAccount(id);
   }
 
   handleCloseDialog() {
@@ -184,7 +185,9 @@ class CRM extends PureComponent {
         account_status: ""
       },
       errors: {},
-      openDialog: !this.state.openDialog
+      dialogUser: {},
+      openDialog: false,
+      openDeleteDialog: false
     });
   }
 
@@ -242,7 +245,6 @@ class CRM extends PureComponent {
   render() {
     const { openDialog, openDeleteDialog, page, rowsPerPage, search, account, errors, toasts } = this.state;
     const { accounts, fetching, count, message } = this.props;
-
     return (
       <div style={{ padding: "1em" }}>
         <Snackbar
