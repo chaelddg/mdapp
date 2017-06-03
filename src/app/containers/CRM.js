@@ -96,9 +96,9 @@ class CRM extends PureComponent {
       { title: 'Last Name',    key: 'last_name',     sort: 'asc', sortable: true  },
       { title: 'First Name',   key: 'first_name',    sort: 'asc', sortable: true  },
       { title: 'Email',        key: 'email',         sort: 'asc', sortable: true  },
-      { title: 'Role',         key: 'account_role',  sort: 'asc', sortable: false  },
-      { title: 'Status',       key: 'account_status',sort: 'asc', sortable: false  },
-      { title: 'Phone Number', key: 'phone_number',              sortable: false },
+      { title: 'Role',         key: 'account_role',  sort: 'asc', sortable: false },
+      { title: 'Status',       key: 'account_status',sort: 'asc', sortable: false },
+      { title: 'Phone Number', key: 'phone_number',               sortable: false },
       {
         title: 'Actions',
         key: '',
@@ -153,6 +153,7 @@ class CRM extends PureComponent {
   saveThrottle() {
     let newState = Object.assign({}, this.state.account);
     delete newState.password2;
+    if (!newState.password) { delete newState.password; }
     if (this.state.account.id) {
       this.props.actions.updateUserAccount(newState);
       this.props.actions.clearAccountDetails();

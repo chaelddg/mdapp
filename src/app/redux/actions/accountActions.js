@@ -89,11 +89,16 @@ export function updateUserAccount(credentials) {
       }
     })
     .then(accountResponse => {
-      dispatch({type: types.CREATE_USER_ACCOUNT_SUCCESS});
-      dispatch(setAccountMessage({
-        message: accountResponse.data.message,
-        success: accountResponse.data.success
-      }));
+      if (credentials.password) {
+        dispatch({type: types.CREATE_USER_ACCOUNT_SUCCESS});
+        dispatch(updateAccountPassword(credentials));
+      } else {
+        dispatch({type: types.CREATE_USER_ACCOUNT_SUCCESS});
+        dispatch(setAccountMessage({
+          message: accountResponse.data.message,
+          success: accountResponse.data.success
+        }));
+      }
     })
     .catch(accountError => {
       dispatch(ajaxCallError());
@@ -121,6 +126,28 @@ export function deleteUserAccount(id) {
       dispatch(ajaxCallError());
       throw(accountError);
     });
+  }
+}
+
+export function updateAccountPassword(data) {
+  return function (dispatch) {
+    dispatch(beginAjaxCall());
+    return axios.put(`/user/update/password`, data, {
+      headers: {
+        'Authorization': localdb.getItem('token')
+      }
+    })
+      .then(accountResponse => {
+        dispatch({type: types.CREATE_USER_ACCOUNT_SUCCESS});
+        dispatch(setAccountMessage({
+          message: accountResponse.data.message,
+          success: accountResponse.data.success
+        }));
+      })
+      .catch(accountError => {
+        dispatch(ajaxCallError());
+        throw(accountError);
+      });
   }
 }
 
