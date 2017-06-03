@@ -17,6 +17,17 @@ import CRMForm from '../components/CRMForm';
 import * as accountActions from '../redux/actions/accountActions';
 import validateInput from '../validations/account';
 
+const account= {
+  email: "",
+  first_name: "",
+  last_name: "",
+  password: "",
+  phone_number: "",
+  password2: "",
+  account_role: "",
+  account_status: ""
+};
+
 class CRM extends PureComponent {
   constructor (props) {
     super(props);
@@ -34,16 +45,7 @@ class CRM extends PureComponent {
         sort: 'asc',
         sortable: true
       },
-      account: {
-        email: "",
-        first_name: "",
-        last_name: "",
-        password: "",
-        phone_number: "",
-        password2: "",
-        account_role: "",
-        account_status: ""
-      },
+      account: Object.assign({}, account),
       errors: {}
     };
 
@@ -53,6 +55,7 @@ class CRM extends PureComponent {
     // Open/Close Dialog Handlers
     this.handleOpenDialog        = this.handleOpenDialog.bind(this);
     this.handleOpenDeleteDialog  = this.handleOpenDeleteDialog.bind(this);
+    this.handleOpenEditDialog    = this.handleOpenEditDialog.bind(this);
     this.handleCloseDialog       = this.handleCloseDialog.bind(this);
 
     this.handlePagination        = this.handlePagination.bind(this);
@@ -79,7 +82,7 @@ class CRM extends PureComponent {
         primary: true,
         text: 'Edit',
         class: 'button-icon--info material-icons',
-        handler: this.handleOpenDialog.bind(this)
+        handler: this.handleOpenEditDialog.bind(this)
       },
       {
         icon: 'delete',
@@ -116,12 +119,18 @@ class CRM extends PureComponent {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { message } = nextProps;
-
+    const { message, details } = nextProps;
     if (message && message.success) {
       this.handleCloseDialog();
       this.addToast(message.message);
       this.handleGridRequest();
+    }
+
+    if (details && details.id) {
+      this.setState({
+        account: Object.assign({}, account, details),
+        openDialog: true
+      });
     }
   }
 
@@ -144,7 +153,12 @@ class CRM extends PureComponent {
   saveThrottle() {
     let newState = Object.assign({}, this.state.account);
     delete newState.password2;
-    this.props.actions.createUserAccount(newState);
+    if (this.state.account.id) {
+      this.props.actions.updateUserAccount(newState);
+      this.props.actions.clearAccountDetails();
+    }
+    else
+      this.props.actions.createUserAccount(newState);
   }
 
   isValid() {
@@ -172,18 +186,15 @@ class CRM extends PureComponent {
     this.props.actions.deleteUserAccount(id);
   }
 
+  handleOpenEditDialog(data, type, ctx) {
+    const { id } = data;
+    this.props.actions.getAccountDetails(id);
+  }
+
   handleCloseDialog() {
+    this.props.actions.clearAccountDetails();
     this.setState({
-      account: {
-        email: "",
-        first_name: "",
-        last_name: "",
-        password: "",
-        phone_number: "",
-        password2: "",
-        account_role: "",
-        account_status: ""
-      },
+      account: Object.assign({}, account),
       errors: {},
       dialogUser: {},
       openDialog: false,
@@ -243,7 +254,16 @@ class CRM extends PureComponent {
   }
 
   render() {
-    const { openDialog, openDeleteDialog, page, rowsPerPage, search, account, errors, toasts } = this.state;
+    const {
+      openDialog,
+      openDeleteDialog,
+      page,
+      rowsPerPage,
+      search,
+      account,
+      errors,
+      toasts
+    } = this.state;
     const { accounts, fetching, count, message } = this.props;
     return (
       <div style={{ padding: "1em" }}>
@@ -300,7 +320,7 @@ class CRM extends PureComponent {
         >
           <div>
             <Toolbar
-              title="Create New Account"
+              title={account.id ? "Update Account" : "Create New Account"}
               fixed
               colored
               actions={this.closeDialogButton}
@@ -335,6 +355,7 @@ function mapStateToProps(state, ownProps) {
     fetching: state.ajaxCallsInProgress > 0,
     accounts: state.accounts.data ? state.accounts.data : [],
     count: state.accounts.count ? state.accounts.count : 0,
+    details: state.accounts.details ? state.accounts.details: null,
     message: state.accounts.message,
     user: state.user
   };

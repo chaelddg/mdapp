@@ -24,6 +24,14 @@ export function clearAccountList () {
   }
 }
 
+export function clearAccountDetails () {
+  return function (dispatch) {
+    dispatch({
+      type: types.CLEAR_ACCOUNT_DETAILS
+    })
+  }
+}
+
 export function getAccountList(limit, start, search, sort, sort_key) {
   return function (dispatch) {
     dispatch(beginAjaxCall());
@@ -51,7 +59,6 @@ export function getAccountList(limit, start, search, sort, sort_key) {
 }
 
 export function createUserAccount(credentials) {
-
   return function (dispatch) {
     dispatch(beginAjaxCall());
     return axios.post(`/user/create`, credentials, {
@@ -73,8 +80,29 @@ export function createUserAccount(credentials) {
   }
 }
 
-export function deleteUserAccount(id) {
+export function updateUserAccount(credentials) {
+  return function (dispatch) {
+    dispatch(beginAjaxCall());
+    return axios.put(`/user/update`, credentials, {
+      headers: {
+        'Authorization': localdb.getItem('token')
+      }
+    })
+    .then(accountResponse => {
+      dispatch({type: types.CREATE_USER_ACCOUNT_SUCCESS});
+      dispatch(setAccountMessage({
+        message: accountResponse.data.message,
+        success: accountResponse.data.success
+      }));
+    })
+    .catch(accountError => {
+      dispatch(ajaxCallError());
+      throw(accountError);
+    });
+  }
+}
 
+export function deleteUserAccount(id) {
   return function (dispatch) {
     dispatch(beginAjaxCall());
     return axios.delete(`/account/delete/${id}`, {
@@ -82,16 +110,36 @@ export function deleteUserAccount(id) {
         'Authorization': localdb.getItem('token')
       }
     })
-      .then(accountResponse => {
-        dispatch({type: types.CREATE_USER_ACCOUNT_SUCCESS});
-        dispatch(setAccountMessage({
-          message: accountResponse.data.message,
-          success: accountResponse.data.success
-        }));
-      })
-      .catch(accountError => {
-        dispatch(ajaxCallError());
-        throw(accountError);
-      });
+    .then(accountResponse => {
+      dispatch({type: types.CREATE_USER_ACCOUNT_SUCCESS});
+      dispatch(setAccountMessage({
+        message: accountResponse.data.message,
+        success: accountResponse.data.success
+      }));
+    })
+    .catch(accountError => {
+      dispatch(ajaxCallError());
+      throw(accountError);
+    });
+  }
+}
+
+export function getAccountDetails(id) {
+  return function (dispatch) {
+    dispatch(beginAjaxCall());
+    return axios.get(`/account/profile/${id}`, {
+      headers: {
+        'Authorization': localdb.getItem('token')
+      }
+    })
+    .then(accountResponse => {
+      const { data } = accountResponse;
+      delete data.data.menu;
+      dispatch({type: types.GET_ACCOUNT_DETAILS_SUCCESS, payload: data.data});
+    })
+    .catch(accountError => {
+      dispatch(ajaxCallError());
+      throw(accountError);
+    });
   }
 }

@@ -4286,6 +4286,39 @@ tbody .md-table-row {
   .md-background--secondary-hover:hover {
     background: rgba(245, 0, 87, 0.9); } }
 
+.md-grid--center {
+  justify-content: center; }
+
+.cursive--font {
+  font-family: "Leckerli One", cursive; }
+
+.btn--gradient {
+  background: linear-gradient(to right, #1976d2 60%, #4dd0e1); }
+  .btn--gradient .md-icon,
+  .btn--gradient .md-icon-text {
+    color: #fff; }
+
+.btn--large {
+  width: 100%;
+  height: auto; }
+  .btn--large .md-icon,
+  .btn--large .md-icon-text {
+    font-size: 2rem; }
+
+.btn--capitalize .md-icon-text {
+  text-transform: capitalize; }
+
+.btn--center .md-icon-separator {
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+  .btn--center .md-icon-separator > .md-icon {
+    margin-right: .25em; }
+  .btn--center .md-icon-separator .md-icon-text {
+    padding: 0;
+    width: auto;
+    flex-grow: 0; }
+
 .md-btn--color-primary-active {
   background: rgba(25, 118, 210, 0.12); }
 
@@ -4352,39 +4385,6 @@ tbody .md-table-row {
     background: rgba(25, 118, 210, 0.9); }
   .md-background--secondary-hover:hover {
     background: rgba(77, 208, 225, 0.9); } }
-
-.md-grid--center {
-  justify-content: center; }
-
-.cursive--font {
-  font-family: "Leckerli One", cursive; }
-
-.btn--gradient {
-  background: linear-gradient(to right, #1976d2 60%, #4dd0e1); }
-  .btn--gradient .md-icon,
-  .btn--gradient .md-icon-text {
-    color: #fff; }
-
-.btn--large {
-  width: 100%;
-  height: auto; }
-  .btn--large .md-icon,
-  .btn--large .md-icon-text {
-    font-size: 2rem; }
-
-.btn--capitalize .md-icon-text {
-  text-transform: capitalize; }
-
-.btn--center .md-icon-separator {
-  display: flex;
-  align-items: center;
-  justify-content: center; }
-  .btn--center .md-icon-separator > .md-icon {
-    margin-right: .25em; }
-  .btn--center .md-icon-separator .md-icon-text {
-    padding: 0;
-    width: auto;
-    flex-grow: 0; }
 
 .login_page {
   display: flex;

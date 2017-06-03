@@ -22,6 +22,18 @@ export default function userReducer(state = initialState.accounts, action) {
       state = _newState;
       return state;
 
+    case types.GET_ACCOUNT_DETAILS_SUCCESS:
+      let accountState = Object.assign({}, state);
+      accountState.details = action.payload;
+      state = accountState;
+      return state;
+
+    case types.CLEAR_ACCOUNT_DETAILS:
+      let _accountState = Object.assign({}, state);
+      _accountState.details = {};
+      state = _accountState;
+      return state;
+
     default:
       return state;
   }

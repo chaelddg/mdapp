@@ -10,7 +10,7 @@
 // =============================
 @import 'variables';
 
-@include react-md-theme-everything($color-primary , $color-secondary);
+
 // =============================
 // components
 // =============================
@@ -22,7 +22,7 @@
 // =============================
 // pages
 // =============================
-//@import 'layout';
+@import 'layout';
 @import 'pages/loginPage';
 
 .override-action-text-td {
