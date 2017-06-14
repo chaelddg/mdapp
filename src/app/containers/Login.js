@@ -34,8 +34,14 @@ class Login extends PureComponent {
   }
 
 	componentWillReceiveProps(nextProps) {
+		const { user } = nextProps;
+		let userState = this.props.user;
 		if (localdb.getItem('id')) {
-			this.context.router.history.push('/dashboard');
+			// check if new logged in
+			if (userState && user && (userState.id !== user.id)) {
+				if (user && user.menu && user.menu.length > 0)
+					this.context.router.history.push(user.menu[0].path);	
+			}
 		}
 	}
 

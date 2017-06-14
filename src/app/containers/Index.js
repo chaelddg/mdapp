@@ -32,6 +32,7 @@ class Index extends PureComponent {
       }
 		};
 		this._handleUserChange = this._handleUserChange.bind(this);
+		this.handleLogout      = this.handleLogout.bind(this);
 
 	}
 
@@ -63,6 +64,12 @@ class Index extends PureComponent {
 
   _handleUserChange() {
 
+  }
+
+  handleLogout() {
+  	this.props.actions.clearUserDetails()
+  	localdb.clear();
+		this.context.router.history.push('/login');
   }
 
 	render() {
@@ -98,10 +105,7 @@ class Index extends PureComponent {
 				tooltipLabel="Open some menu"
 			>
 				<ListItem primaryText="Settings" rightIcon={<FontIcon>settings</FontIcon>} />
-				<ListItem primaryText="Logout" onClick={() => {
-					localdb.clear();
-					this.context.router.history.push('/login');
-				}} rightIcon={<FontIcon>power_settings_new</FontIcon>} />
+				<ListItem primaryText="Logout" onClick={this.handleLogout} rightIcon={<FontIcon>power_settings_new</FontIcon>} />
 			</MenuButton>
 		);
 

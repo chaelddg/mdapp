@@ -52,7 +52,8 @@ class App extends PureComponent {
 			// CHECKING IF USER IS NOT ALLOWED TO NAVIGATE ROUTE
 			let foundObjForKey = nextProps.user.menu.find((item) => item.path === pathname);
 			if (!foundObjForKey) {
-				this.context.router.history.push('/dashboard');
+				if (nextProps.user && nextProps.user.menu && nextProps.user.menu.length > 0)
+					this.context.router.history.push(nextProps.user.menu[0].path);
 			} else {
 				let navItems = [];
 				nextProps.user.menu.map((item, index) => {

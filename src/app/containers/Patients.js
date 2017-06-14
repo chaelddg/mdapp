@@ -135,7 +135,7 @@ class Dashboard extends PureComponent {
     return (
       <div style={{ padding: "1em" }}>
         <ToolBar
-          title={"MDapp / Dashboard"}
+          title={"MDapp / Patients"}
           handleOpenDialog={this.handleOpenDialog} />
         <br/>
         <DataTable

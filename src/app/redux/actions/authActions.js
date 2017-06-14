@@ -17,6 +17,12 @@ export function clearAuthMessage () {
 	}
 }
 
+export function clearUserDetails() {
+  return {
+    type: types.CLEAR_USER_DETAILS
+  }
+}
+
 export function authenticateLogin(credentials) {
 	return function (dispatch) {
 		dispatch(beginAjaxCall());

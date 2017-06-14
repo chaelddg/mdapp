@@ -7,7 +7,8 @@ export default function userReducer(state = initialState.user, action) {
 			return Object.assign({}, state, action.payload);
 
 		case types.CLEAR_USER_DETAILS:
-			return action.details;
+			state = {}
+			return state;
 
 		default:
 			return state;
