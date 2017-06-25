@@ -321,7 +321,7 @@ class CRM extends PureComponent {
         >
           <div>
             <Toolbar
-              title={account.id ? "Update Account" : "Create New Account"}
+              title={account.id ? "Update Account" : "New Account"}
               fixed
               colored
               actions={this.closeDialogButton}

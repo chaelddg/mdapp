@@ -30,7 +30,7 @@ const CRMForm = (
     message,
     handleCancel
   }) => (
-  <Card className="override-dialog-form-margin">
+  <Card className="override-dialog-crm-form-margin">
     <section className="md-grid" aria-labelledby={`new-row-group-${index + 1}`}>
       <h3 id={`new-row-group-${index + 1}`} className="md-cell md-cell--12">
         Fill Out Account Form

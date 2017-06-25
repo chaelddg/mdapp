@@ -24,17 +24,5 @@
 // =============================
 @import 'layout';
 @import 'pages/loginPage';
-
-.override-action-text-td {
-  padding-top: 10px !important;
-  padding-bottom: 0px !important;
-}
-
-.override-action-button-td {
-  padding-top: 0px !important;
-  padding-bottom: 0px !important;
-}
-
-.override-dialog-form-margin {
-  margin: 6em 1em 1em 1em;
-}
+@import 'pages/crmPage';
+@import 'pages/patientPage';

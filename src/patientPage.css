@@ -1,0 +1,5 @@
+.react-swipeable-view-container > div {
+  height: 100% !important; }
+
+.override-dialog-patient-form-margin {
+  margin: 1em; }

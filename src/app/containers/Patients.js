@@ -7,14 +7,19 @@ import _ from 'lodash';
 
 import Button from 'react-md/lib/Buttons/Button';
 import Toolbar from 'react-md/lib/Toolbars';
+import TabsContainer from 'react-md/lib/Tabs/TabsContainer';
+import Tabs from 'react-md/lib/Tabs/Tabs';
+import Tab from 'react-md/lib/Tabs/Tab';
 
 import * as patientActions from '../redux/actions/patientActions';
 
 import DataTable from '../components/DataTable';
 import ToolBar from '../components/ToolBar';
 import Dialog from '../components/Dialog';
-import PatientForm from '../components/PatientForm';
 
+import PersonalInformation from '../components/Patient/PersonalInformation';
+import PatientInformation from '../components/Patient/PatientInformation';
+import Diagnosis from '../components/Patient/Diagnosis';
 
 class Dashboard extends PureComponent {
   constructor (props) {
@@ -22,6 +27,7 @@ class Dashboard extends PureComponent {
 
     this.state = {
       openDialog: false,
+      activeTabIndex: 0,
       page: 1,
       rowsPerPage: 10,
       search: '',
@@ -32,12 +38,16 @@ class Dashboard extends PureComponent {
       }
     };
 
-    this.searchDebouce    = _.debounce(this.searchDebouce, 800);
+    this.searchDebouce     = _.debounce(this.searchDebouce, 800);
 
-    this.handleOpenDialog = this.handleOpenDialog.bind(this);
-    this.handlePagination = this.handlePagination.bind(this);
-    this.handleColumnSort = this.handleColumnSort.bind(this);
-    this.handleSearch     = this.handleSearch.bind(this);
+    this.handleOpenDialog  = this.handleOpenDialog.bind(this);
+    this.handlePagination  = this.handlePagination.bind(this);
+    this.handleColumnSort  = this.handleColumnSort.bind(this);
+    this.handleSearch      = this.handleSearch.bind(this);
+
+    // Tab events
+    this.handleTableChange = this.handleTableChange.bind(this);
+    this.setTabsContainer  = this.setTabsContainer.bind(this);
 
     this.closeDialogButton = <Button icon
                                      onClick={this.handleOpenDialog}
@@ -73,6 +83,14 @@ class Dashboard extends PureComponent {
     this.setState({
       openDialog: !this.state.openDialog
     });
+  }
+
+  handleTableChange(activeTabIndex) {
+    this.setState({activeTabIndex: activeTabIndex});
+  }
+
+  setTabsContainer(tabsContainer) {
+    this._tabsContainer = tabsContainer;
   }
 
   handlePagination(newStart, rowsPerPage, currentPage) {
@@ -115,7 +133,7 @@ class Dashboard extends PureComponent {
   }
 
   render() {
-    const { openDialog, page, rowsPerPage, search } = this.state;
+    const { activeTabIndex, openDialog, page, rowsPerPage, search } = this.state;
     const { patients, fetching, count } = this.props;
     const header = [
       { title: 'Last Name',    key: 'last_name',    sort: 'asc', sortable: true  },
@@ -159,16 +177,34 @@ class Dashboard extends PureComponent {
           visible={openDialog}
           handleCloseDialog={this.handleOpenDialog}
         >
-          <div>
-            <Toolbar
-              title="Create New Patient"
-              fixed
-              colored
+          <TabsContainer
+            colored
+            fixed
+            toolbar={<Toolbar
+              title="New Patient"
               actions={this.closeDialogButton}
-            />
-            <PatientForm index={1} />
-          </div>
-
+            />}
+            activeTabIndex={activeTabIndex}
+            onTabChange={this.handleTableChange}
+            ref={this.setTabsContainer}
+          >
+            <Tabs tabId="patient-tabs">
+              <Tab label="Personal Information">
+                <PersonalInformation index={1} />
+              </Tab>
+              <Tab label="Patient Information">
+                <PatientInformation 
+                  inlineValue={'C'}
+                  index={1} />
+              </Tab>
+              <Tab label="Diagnosis">
+                <Diagnosis index={1} />
+              </Tab>
+              <Tab label="Results">
+                F
+              </Tab>
+            </Tabs>
+          </TabsContainer>
         </Dialog>
       </div>
     );
